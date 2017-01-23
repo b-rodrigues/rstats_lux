@@ -1,6 +1,7 @@
 ---
 title: "A Plain Markdown Post"
 date: "2016-12-30T21:49:57-07:00"
+author: "Kevin Rosamont"
 image: "/img/generic.png"
 ---
 

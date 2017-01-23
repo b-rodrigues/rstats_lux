@@ -5,6 +5,7 @@
     <div class="col-lg-8">
       <div class="content-column-content">
          <h1>{{ .Title }}</h1>
+         <h4>{{ .Date.Format "January 2, 2006" }} by {{ .Params.Author }} </h4>
          {{ .Content }}
          {{ template "_internal/disqus.html" . }}
       </div>
