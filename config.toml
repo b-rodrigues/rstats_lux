@@ -10,9 +10,12 @@ ignoreFiles = ["\\.Rmd$", "_files$", "_cache$"]
 [permalinks]
     post = "/:year/:month/:day/:slug/"
 
-[[menu.main]]
+[[params.navlinks]]
     name = "About"
-    url = "/about/"
+    url = "about/"
+[[params.navlinks]]
+    name = "Get in touch"
+    url = "contact/"
 [[menu.main]]
     name = "GitHub"
     url = "https://github.com/b-rodrigues/rstats_lux"

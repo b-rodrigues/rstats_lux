@@ -1,6 +1,18 @@
----
-title: "About"
-date: "2016-05-05T21:48:51-07:00"
----
++++
+date = "2017-03-20T21:05:33+05:30"
+title = "Who are we?"
++++
 
-This is a "hello world" example website for the [**blogdown**](https://github.com/rstudio/blogdown) package. The theme was forked from [@jrutheiser/hugo-lithium-theme](https://github.com/jrutheiser/hugo-lithium-theme) and modified by [Yihui Xie](https://github.com/yihui/hugo-lithium-theme).
+## Kevin Rosamont
+![Kevin Rosamont][1]
+
+Data scientist interested in Data analysis and Visualisation
+ 
+I’m initially a Statistician with a solid grounding in statistical theory and techniques.
+I’ve also gained lots of experience in data mining through my working experience.
+What I'm doing in my daily life?
+Working in the public domain.
+ 
+Besides that, I'm a big soccer fan! Allez les bleus!
+
+[1]: /img/kevin.jpg
