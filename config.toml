@@ -1,7 +1,7 @@
 baseurl = "/"
 relativeurls = true
 languageCode = "en-us"
-title = "Rstats Luxembourg"
+title = "Rdata Luxembourg"
 theme = "hugo-creative-portfolio-theme"
 googleAnalytics = ""
 disqusShortname = ""

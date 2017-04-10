@@ -1,239 +1,26 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Portfolios on Rstats Luxembourg</title>
+    <title>Portfolios on Rdata Luxembourg</title>
     <link>/portfolio/index.xml</link>
-    <description>Recent content in Portfolios on Rstats Luxembourg</description>
+    <description>Recent content in Portfolios on Rdata Luxembourg</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 30 Dec 2016 21:49:57 -0700</lastBuildDate>
+    <lastBuildDate>Mon, 10 Apr 2017 20:10:38 +0200</lastBuildDate>
     <atom:link href="/portfolio/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
-      <title>A Plain Markdown Post</title>
-      <link>/portfolio/2016-12-30-hello-markdown/</link>
-      <pubDate>Fri, 30 Dec 2016 21:49:57 -0700</pubDate>
+      <title>Welcome to Rdata Luxembourg!</title>
+      <link>/portfolio/2017-04-10-welcome-to-rdata-luxembourg/</link>
+      <pubDate>Mon, 10 Apr 2017 20:10:38 +0200</pubDate>
       
-      <guid>/portfolio/2016-12-30-hello-markdown/</guid>
-      <description>&lt;p&gt;This is a post written in plain Markdown (&lt;code&gt;*.md&lt;/code&gt;) instead of R Markdown (&lt;code&gt;*.Rmd&lt;/code&gt;). The major differences are:&lt;/p&gt;
+      <guid>/portfolio/2017-04-10-welcome-to-rdata-luxembourg/</guid>
+      <description>&lt;p&gt;Welcome to Rdata Luxembourg! This blog is dedicated to Luxembourg&amp;rsquo;s users of the R programming language.
+In this blog we will publish tips, tricks and tutorials about the R programming language and present
+applications using &lt;a href=&#34;https://data.public.lu/en/&#34;&gt;open data from Luxembourg.&lt;/a&gt;&lt;/p&gt;
 
-&lt;ol&gt;
-&lt;li&gt;You cannot run any R code in a plain Markdown document, whereas in an R Markdown document, you can embed R code chunks (&lt;code&gt;```{r}&lt;/code&gt;);&lt;/li&gt;
-&lt;li&gt;A plain Markdown post is rendered through &lt;a href=&#34;https://gohugo.io/overview/configuration/&#34;&gt;Blackfriday&lt;/a&gt;, and an R Markdown document is compiled by &lt;a href=&#34;http://rmarkdown.rstudio.com&#34;&gt;&lt;strong&gt;rmarkdown&lt;/strong&gt;&lt;/a&gt; and &lt;a href=&#34;http://pandoc.org&#34;&gt;Pandoc&lt;/a&gt;.&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;There are many differences in syntax between Blackfriday&amp;rsquo;s Markdown and Pandoc&amp;rsquo;s Markdown. For example, you can write a task list with Blackfriday but not with Pandoc:&lt;/p&gt;
-
-&lt;ul class=&#34;task-list&#34;&gt;
-&lt;li&gt;&lt;input type=&#34;checkbox&#34; checked disabled class=&#34;task-list-item&#34;&gt; Write an R package.&lt;/li&gt;
-&lt;li&gt;&lt;input type=&#34;checkbox&#34; disabled class=&#34;task-list-item&#34;&gt; Write a book.&lt;/li&gt;
-&lt;li&gt;&lt;input type=&#34;checkbox&#34; disabled class=&#34;task-list-item&#34;&gt; &amp;hellip;&lt;/li&gt;
-&lt;li&gt;&lt;input type=&#34;checkbox&#34; disabled class=&#34;task-list-item&#34;&gt; Profit!&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Similarly, Blackfriday does not support LaTeX math and Pandoc does. I have added the MathJax support to this theme (&lt;a href=&#34;https://github.com/yihui/hugo-lithium-theme&#34;&gt;hugo-lithium-theme&lt;/a&gt;) but there is a caveat for plain Markdown posts: you have to include inline math expressions in  a pair of escaped parentheses &lt;code&gt;\&lt;/code&gt;&lt;code&gt;( \)&lt;/code&gt; instead of dollar signs &lt;code&gt;$ $&lt;/code&gt;, e.g. &lt;code&gt;\(S_n = \sum_{i=1}^n X_i\)&lt;/code&gt;. For R Markdown posts, you can use &lt;code&gt;$ $&lt;/code&gt; to write inline math expressions.&lt;/p&gt;
-
-&lt;p&gt;When creating a new post, you have to decide whether the post format is Markdown or R Markdown, and this can be done via the &lt;code&gt;rmd&lt;/code&gt; argument of the function &lt;code&gt;blogdown::new_post()&lt;/code&gt;, e.g.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;blogdown::new_post(&amp;quot;Post Title&amp;quot;, rmd = FALSE)
-&lt;/code&gt;&lt;/pre&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Hello R Markdown</title>
-      <link>/portfolio/2015-07-23-r-rmarkdown/</link>
-      <pubDate>Thu, 23 Jul 2015 21:13:14 -0500</pubDate>
-      
-      <guid>/portfolio/2015-07-23-r-rmarkdown/</guid>
-      <description>&lt;!-- BLOGDOWN-BODY-BEFORE
-
-/BLOGDOWN-BODY-BEFORE --&gt;
-
-&lt;div id=&#34;r-markdown&#34; class=&#34;section level1&#34;&gt;
-&lt;h1&gt;R Markdown&lt;/h1&gt;
-&lt;p&gt;This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see &lt;a href=&#34;http://rmarkdown.rstudio.com&#34; class=&#34;uri&#34;&gt;http://rmarkdown.rstudio.com&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;You can embed an R code chunk like this:&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;summary(cars)
-##      speed           dist       
-##  Min.   : 4.0   Min.   :  2.00  
-##  1st Qu.:12.0   1st Qu.: 26.00  
-##  Median :15.0   Median : 36.00  
-##  Mean   :15.4   Mean   : 42.98  
-##  3rd Qu.:19.0   3rd Qu.: 56.00  
-##  Max.   :25.0   Max.   :120.00
-fit &amp;lt;- lm(dist ~ speed, data = cars)
-fit
-## 
-## Call:
-## lm(formula = dist ~ speed, data = cars)
-## 
-## Coefficients:
-## (Intercept)        speed  
-##     -17.579        3.932&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;div id=&#34;including-plots&#34; class=&#34;section level1&#34;&gt;
-&lt;h1&gt;Including Plots&lt;/h1&gt;
-&lt;p&gt;You can also embed plots. See Figure &lt;a href=&#34;#fig:pie&#34;&gt;1&lt;/a&gt; for example:&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;par(mar = c(0, 1, 0, 1))
-pie(
-  c(280, 60, 20),
-  c(&amp;#39;Sky&amp;#39;, &amp;#39;Sunny side of pyramid&amp;#39;, &amp;#39;Shady side of pyramid&amp;#39;),
-  col = c(&amp;#39;#0292D8&amp;#39;, &amp;#39;#F7EA39&amp;#39;, &amp;#39;#C4B632&amp;#39;),
-  init.angle = -50, border = NA
-)&lt;/code&gt;&lt;/pre&gt;
-&lt;div class=&#34;figure&#34;&gt;&lt;span id=&#34;fig:pie&#34;&gt;&lt;/span&gt;
-&lt;img src=&#34;#####../content/portfolio/2015-07-23-r-rmarkdown_files/figure-html/pie-1.png&#34; alt=&#34;A fancy pie chart.&#34; width=&#34;672&#34; /&gt;
-&lt;p class=&#34;caption&#34;&gt;
-Figure 1: A fancy pie chart.
-&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-
-&lt;!-- BLOGDOWN-HEAD
-
-
-
-
-/BLOGDOWN-HEAD --&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Lorem Ipsum</title>
-      <link>/portfolio/2015-01-01-lorem-ipsum/</link>
-      <pubDate>Thu, 01 Jan 2015 13:09:13 -0600</pubDate>
-      
-      <guid>/portfolio/2015-01-01-lorem-ipsum/</guid>
-      <description>&lt;p&gt;&lt;strong&gt;Lorem ipsum&lt;/strong&gt; dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore &lt;em&gt;magna aliqua&lt;/em&gt;. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Launch shiny from a shortcut</title>
-      <link>/portfolio/2017-04-10-launch-a-shiny-app-from-a-shortcut/</link>
-      <pubDate>Mon, 10 Apr 2017 21:13:14 -0500</pubDate>
-      
-      <guid>/portfolio/2017-04-10-launch-a-shiny-app-from-a-shortcut/</guid>
-      <description>&lt;p&gt;Hello,&lt;/p&gt;
-
-&lt;p&gt;In this post I will explain how to launch a shiny application from a shortcut. just like that:
-&lt;video controls=&#34;&#34; height=&#34;400&#34; width=&#34;640&#34;&gt;
-  &lt;source src=&#34;../img/launch_icon.mp4&#34; type=&#34;video/mp4&#34;/&gt;
-&lt;/video&gt;&lt;/p&gt;
-
-&lt;p&gt;It&amp;rsquo;s short and usefull if you work with colleagues that don&amp;rsquo;t know a clue about R and just want to use your shiny app. &lt;del&gt;I suggest you to follow this guide. Your colleagues will double click on the shortcut and directly be in front of their application.&lt;/del&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;h4&gt;If you are on MAC:&lt;/h4&gt;
-Open a text editor and write the following lines :&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt; Rscript &#39;&amp;amp;FullPath/&amp;amp;file.R&#39; &amp;amp;
- open http://127.0.0.1:&amp;amp;PortNumber/;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;strong&gt;&amp;amp;&lt;/strong&gt; allows you to write more command lines even if the shell is still busy with the previous line. The second line open your web browser with the chosen address. A concrete example gives that:
-&lt;img src=&#34;../img/launch_code.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;On the second line, &lt;strong&gt;7990&lt;/strong&gt; refers to the choosen port in your shiny app. If you haven&amp;rsquo;t choosen one, go back to the file where you have wrote the application and add to shinyApp: &lt;strong&gt;options = list(port= 7990)&lt;/strong&gt;, just like that:&lt;br&gt;
-&lt;strong&gt;shinyApp(ui=ui,server=server, options = list(port=7990))&lt;/strong&gt;&lt;br&gt;&lt;/p&gt;
-
-&lt;p&gt;if you use a &lt;strong&gt;.Rmd&lt;/strong&gt; document, you should write this:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt; Rscript -e  &amp;quot;rmarkdown::run(&#39;&amp;amp;FullPath/&amp;amp;file.Rmd&#39;, shiny_args = list(port=&amp;amp;PortNumber))&amp;quot; &amp;amp;
- open http://127.0.0.1:&amp;amp;PortNumber/&amp;amp;file.Rmd;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Replace &amp;amp;FullPath, &amp;amp;file and &amp;amp;PortNumber by the file path, the file name and the chosen port. &lt;br&gt; &lt;br&gt;
-Then save it with the  &lt;strong&gt;&amp;rdquo;.command&amp;rdquo;&lt;/strong&gt; extension and try to launch your shiny application from the shortcut. if you have a message saying that the file could not be executed because you do not have appropriate access privileges, open your terminal and write the following line:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;chmod u+x &amp;amp;FullPath/&amp;amp;file.command
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Then it should work :) &lt;br&gt;
-We are almost done, now we have to add another shortcut icon to make it look more &lt;del&gt;user&lt;/del&gt; friendly. For that, go on google and download free &lt;strong&gt;.icns&lt;/strong&gt; icons. I have download some icons on &lt;a href=&#34;http://www.easyicon.net/&#34;&gt;easyicon&lt;/a&gt;.
-To change the icon you just need to go in &amp;ldquo;get info&amp;rdquo; and drag your new icon to the previous one, just like bellow:&lt;br&gt;
-&lt;video controls=&#34;&#34; height=&#34;400&#34; width=&#34;640&#34;&gt;
-  &lt;source src=&#34;../img/change_icon.mp4&#34; type=&#34;video/mp4&#34; /&gt;
-&lt;/video&gt;
-&lt;br&gt;&lt;br&gt;
-&lt;h4&gt;If you are on Windows:&lt;/h4&gt;
-Open a text editor and write the following lines:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;start &amp;quot;&amp;quot; &amp;quot;&amp;amp;FullPath1\Rscript.exe&amp;quot; &amp;amp;FullPath2\&amp;amp;file.R  /k
-start &amp;quot;Name&amp;quot; &amp;quot;http://127.0.0.1:&amp;amp;PortNumber/&amp;quot;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;strong&gt;/k&lt;/strong&gt; allows you to write something in the command prompt even if the Prompt is busy with the previous line. A concrete example gives that :
-&lt;img src=&#34;../img/mlaunch_code.png&#34;  /&gt;&lt;/p&gt;
-
-&lt;p&gt;Then you can save your file with a &lt;strong&gt;.bat&lt;/strong&gt; extension. &lt;br&gt;
-Be carefull, if you want to launch a &lt;strong&gt;.Rmd&lt;/strong&gt; you should use this code instead :&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;start &amp;quot;&amp;amp;FullPath1\R.exe&amp;quot; -e &amp;quot;Sys.setenv(RSTUDIO_PANDOC=&#39;C:/Program Files/RStudio/bin/pandoc&#39;); rmarkdown::run(&#39;&amp;amp;FullPath2/&amp;amp;file.Rmd&#39;, shiny_args = list(port =&amp;amp;PortNumber, launch.browser = FALSE))&amp;quot; /k
-start &amp;quot;&amp;amp;file&amp;quot; &amp;quot;http://127.0.0.1:7924/&amp;amp;file.Rmd&amp;quot;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;if it doesn&amp;rsquo;t work, check your pandoc location.&lt;/p&gt;
-
-&lt;p&gt;It&amp;rsquo;s almost done. Now we have to change the icon. first you have to download an icon with the .ico extension. then you have to act in 4 steps : &lt;/br&gt;
-1. Right click on your file and go in &lt;strong&gt;Properties&lt;/strong&gt;. &lt;/br&gt;
-2. Choose the &lt;strong&gt;Shortcut&lt;/strong&gt; tab. &lt;/br&gt;
-3. Then go in &lt;strong&gt;Change Icon&amp;hellip;&lt;/strong&gt;. &lt;/br&gt;
-4. In Browse, select the icon you want to see instead. &lt;/br&gt;
-&lt;img src=&#34;../img/micon_change.png&#34; style = &#34;max-width:640px;&#34;&gt;&lt;/p&gt;
-
-&lt;p&gt;And now it&amp;rsquo;s done! &lt;br&gt;&lt;br&gt;&lt;br&gt;
-Don&amp;rsquo;t hesitate to contact me if you have any comments or suggestions.&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>R and d3js, how to make them communicate</title>
-      <link>/portfolio/d3jsandR_communication/</link>
-      <pubDate>Thu, 23 Jul 2015 21:13:14 -0500</pubDate>
-      
-      <guid>/portfolio/d3jsandR_communication/</guid>
-      <description>&lt;!-- BLOGDOWN-BODY-BEFORE
-
-/BLOGDOWN-BODY-BEFORE --&gt;
-
-&lt;p&gt;Hello,&lt;/p&gt;
-&lt;p&gt;In this post we will focus ourself on how to integrate a message from R to javascript. More precisely, we will focus on the basic key words and knowledge to integrate a d3.js graphic into shiny, just like &lt;a href=&#34;http://51.254.215.145:3838/shiny-fret/&#34;&gt;here&lt;/a&gt;. &lt;del&gt;If you have no clue about what shiny is. I suggest you to see some of my apps here and if you want to learn more, check this &lt;a href=&#34;https://shiny.rstudio.com/tutorial/lesson1/&#34;&gt;tutorial&lt;/a&gt;.&lt;/del&gt; &lt;del&gt;To write this post I inspire myself of &lt;a href=&#34;https://myinspirationinformation.com/visualisation/d3-js/integrating-d3-js-into-r-shiny&#34;&gt;James Thomson ’s blog&lt;/a&gt; and a &lt;a href=&#34;http://shiny.rstudio.com/gallery/server-to-client-custom-messages.html&#34;&gt;shiny app&lt;/a&gt; from Rstudio.&lt;/del&gt; If you have any issue to make shiny and javascript communicate after reading this post, I suggest you to go back to this simple &lt;a href=&#34;http://shiny.rstudio.com/gallery/server-to-client-custom-messages.html&#34;&gt;shiny app&lt;/a&gt; from Rstudio.&lt;br&gt;&lt;br&gt; First of all, you will create a folder where you will put your data file (.csv, .txt, etc..) and your app.R (or ui.R and server.R). In this folder, you will create a new folder that you will name “www”. You will put your .css and .js file inside “www”. &lt;br&gt;&lt;br&gt; &lt;img src=&#34;../Users/user/Desktop/Clef_USB/data_science/hugo/static/img/portfolio/folder_www.png&#34; alt=&#34;&#34; /&gt;&lt;br&gt;&lt;/p&gt;
-&lt;p&gt;To make R and d3.js communicate, you will have to put some key words in the server part, the ui part and the .js file.&lt;br&gt;&lt;br&gt; &lt;strong&gt;in server.R&lt;/strong&gt;, put your data that you want to send to javascript in an &lt;strong&gt;observe({ })&lt;/strong&gt; function. Just like bellow:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;function(input, output, session) {
-    observe({
-        dataSendToJs = &amp;quot;Hello World&amp;quot;
-        session$sendCustomMessage(type = &amp;#39;nameOfTheMessage&amp;#39;,dataSendToJs)
-    })
-}&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;strong&gt;session$sendCustomMessage( )&lt;/strong&gt; allows you to send your data from shiny to javascript. &lt;br&gt;&lt;br&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;in ui.R&lt;/strong&gt;, source the javascript document via a tag function.&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;fluidPage(
-  titlePanel(&amp;quot;Example&amp;quot;),
-  fluidRow(
-  #Shiny way to integrate html code in the web page
-  tags$head(tags$script(src = &amp;quot;message.js&amp;quot;))
-  )
-)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;br&gt; &lt;strong&gt;in .js&lt;/strong&gt;, code has to begin with &lt;strong&gt;“Shiny.addCustomMessageHandler(”nameOfTheMessage“, function(message) {”&lt;/strong&gt; like the following example. Don’t forget message represents data from R that javascript will read so it’s better to transform them to json data. You can do it in R via the function &lt;code&gt;jsonlite::toJSON()&lt;/code&gt;.&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;Shiny.addCustomMessageHandler(&amp;quot;nameOfTheMessage&amp;quot;,
-                                      function(message) {
-                                              alert(JSON.stringify(message));
-                                      });&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Now it should work! You can find the whole process in this repository. We have begin with something simple but you can do more complex thing with same logic.&lt;/p&gt;
-&lt;p&gt;Be carefull, if you’re working locally, you have to make some modification: First, you need to have a webserver. I use &lt;a href=&#34;https://chrome.google.com/webstore/detail/web-server-for-chrome/ofhbbkphhbklhfoeikjpcbhemlocgigb?hl=en&#34;&gt;web server for chrome&lt;/a&gt;. If you choose to use the same web server, it’s very simple. &lt;br&gt; First, in “CHOOSE FOLDER”, ou have to choose the “www” folder that you have made previously, then a web server url will appear. Click on it, then a new web page with the different files from “www” should pop-up.&lt;br&gt;&lt;br&gt; &lt;img src=&#34;../Users/user/Desktop/Clef_USB/data_science/hugo/static/img/portfolio/webserver_source.png&#34; style = &#34;max-width:640px;&#34;&gt; &lt;br&gt;&lt;br&gt; In ui.R (or the ui part of your single-file shiny app), source d3.min.js and all “.css” and “.js” files as follow:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;#http://127.0.0.1:8887 represents the web server URL
-tags$head(tags$script(src = &amp;quot;http://127.0.0.1:8887/d3.min.js&amp;quot;))&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Now it should work :) &lt;br&gt;&lt;br&gt; You can see a complete and reproductable example in &lt;a href=&#34;https://github.com/woozaa/fret_Lux&#34;&gt;GitHub&lt;/a&gt;.&lt;br&gt; Don’t hesitate to contact me if you have any comments or suggestions.&lt;/p&gt;
-
-
-&lt;!-- BLOGDOWN-HEAD
-
-
-
-
-/BLOGDOWN-HEAD --&gt;
+&lt;p&gt;We are a small group of dedicated users of the R programming language, all living or working in Luxembourg.
+You can get to know us better by clicking &lt;a href=&#34;http://www.rdata.lu/about&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
 </description>
     </item>
     
