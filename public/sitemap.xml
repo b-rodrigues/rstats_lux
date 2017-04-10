@@ -2,6 +2,16 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>/portfolio/2017-04-10-launch-a-shiny-app-from-a-shortcut/</loc>
+    <lastmod>2017-04-10T21:13:14-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/portfolio/d3jsandR_communication/</loc>
+    <lastmod>2015-07-23T21:13:14-05:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/about/</loc>
     <lastmod>2017-03-20T21:05:33+05:30</lastmod>
   </url>
@@ -27,7 +37,25 @@
   </url>
   
   <url>
+    <loc>/tags/batch/</loc>
+    <lastmod>2017-04-10T21:13:14-05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>/categories/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/d3js/</loc>
+    <lastmod>2015-07-23T21:13:14-05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/icon/</loc>
+    <lastmod>2017-04-10T21:13:14-05:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -63,7 +91,19 @@
   
   <url>
     <loc>/</loc>
-    <lastmod>2017-03-20T21:05:33+05:30</lastmod>
+    <lastmod>2017-04-10T21:13:14-05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/shiny/</loc>
+    <lastmod>2015-07-23T21:13:14-05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/categories/shiny-app/</loc>
+    <lastmod>2017-04-10T21:13:14-05:00</lastmod>
     <priority>0</priority>
   </url>
   

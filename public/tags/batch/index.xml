@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Batch on Rstats Luxembourg</title>
+    <link>/tags/batch/index.xml</link>
+    <description>Recent content in Batch on Rstats Luxembourg</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <atom:link href="/tags/batch/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Launch shiny from a shortcut</title>
+      <link>/portfolio/2017-04-10-launch-a-shiny-app-from-a-shortcut/</link>
+      <pubDate>Mon, 10 Apr 2017 21:13:14 -0500</pubDate>
+      
+      <guid>/portfolio/2017-04-10-launch-a-shiny-app-from-a-shortcut/</guid>
+      <description>&lt;p&gt;Hello,&lt;/p&gt;
+
+&lt;p&gt;In this post I will explain how to launch a shiny application from a shortcut. just like that:
+&lt;video controls=&#34;&#34; height=&#34;400&#34; width=&#34;640&#34;&gt;
+  &lt;source src=&#34;../../img/launch_icon.mp4&#34; type=&#34;video/mp4&#34;/&gt;
+&lt;/video&gt;&lt;/p&gt;
+
+&lt;p&gt;It&amp;rsquo;s short and usefull if you work with colleagues that don&amp;rsquo;t know a clue about R and just want to use your shiny app. &lt;del&gt;I suggest you to follow this guide. Your colleagues will double click on the shortcut and directly be in front of their application.&lt;/del&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;h4&gt;If you are on MAC:&lt;/h4&gt;
+Open a text editor and write the following lines :&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt; Rscript &#39;&amp;amp;FullPath/&amp;amp;file.R&#39; &amp;amp;
+ open http://127.0.0.1:&amp;amp;PortNumber/;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;&amp;amp;&lt;/strong&gt; allows you to write more command lines even if the shell is still busy with the previous line. The second line open your web browser with the chosen address. A concrete example gives that:
+&lt;img src=&#34;../../img/launch_code.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;On the second line, &lt;strong&gt;7990&lt;/strong&gt; refers to the choosen port in your shiny app. If you haven&amp;rsquo;t choosen one, go back to the file where you have wrote the application and add to shinyApp: &lt;strong&gt;options = list(port= 7990)&lt;/strong&gt;, just like that:&lt;br&gt;
+&lt;strong&gt;shinyApp(ui=ui,server=server, options = list(port=7990))&lt;/strong&gt;&lt;br&gt;&lt;/p&gt;
+
+&lt;p&gt;if you use a &lt;strong&gt;.Rmd&lt;/strong&gt; document, you should write this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt; Rscript -e  &amp;quot;rmarkdown::run(&#39;&amp;amp;FullPath/&amp;amp;file.Rmd&#39;, shiny_args = list(port=&amp;amp;PortNumber))&amp;quot; &amp;amp;
+ open http://127.0.0.1:&amp;amp;PortNumber/&amp;amp;file.Rmd;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Replace &amp;amp;FullPath, &amp;amp;file and &amp;amp;PortNumber by the file path, the file name and the chosen port. &lt;br&gt; &lt;br&gt;
+Then save it with the  &lt;strong&gt;&amp;rdquo;.command&amp;rdquo;&lt;/strong&gt; extension and try to launch your shiny application from the shortcut. if you have a message saying that the file could not be executed because you do not have appropriate access privileges, open your terminal and write the following line:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;chmod u+x &amp;amp;FullPath/&amp;amp;file.command
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Then it should work :) &lt;br&gt;
+We are almost done, now we have to add another shortcut icon to make it look more &lt;del&gt;user&lt;/del&gt; friendly. For that, go on google and download free &lt;strong&gt;.icns&lt;/strong&gt; icons. I have download some icons on &lt;a href=&#34;http://www.easyicon.net/&#34;&gt;easyicon&lt;/a&gt;.
+To change the icon you just need to go in &amp;ldquo;get info&amp;rdquo; and drag your new icon to the previous one, just like bellow:&lt;br&gt;
+&lt;video controls=&#34;&#34; height=&#34;400&#34; width=&#34;640&#34;&gt;
+  &lt;source src=&#34;../../img/change_icon.mp4&#34; type=&#34;video/mp4&#34; /&gt;
+&lt;/video&gt;
+&lt;br&gt;&lt;br&gt;
+&lt;h4&gt;If you are on Windows:&lt;/h4&gt;
+Open a text editor and write the following lines:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;start &amp;quot;&amp;quot; &amp;quot;&amp;amp;FullPath1\Rscript.exe&amp;quot; &amp;amp;FullPath2\&amp;amp;file.R  /k
+start &amp;quot;Name&amp;quot; &amp;quot;http://127.0.0.1:&amp;amp;PortNumber/&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;/k&lt;/strong&gt; allows you to write something in the command prompt even if the Prompt is busy with the previous line. A concrete example gives that :
+&lt;img src=&#34;../../img/mlaunch_code.png&#34;  /&gt;&lt;/p&gt;
+
+&lt;p&gt;Then you can save your file with a &lt;strong&gt;.bat&lt;/strong&gt; extension. &lt;br&gt;
+Be carefull, if you want to launch a &lt;strong&gt;.Rmd&lt;/strong&gt; you should use this code instead :&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;start &amp;quot;&amp;amp;FullPath1\R.exe&amp;quot; -e &amp;quot;Sys.setenv(RSTUDIO_PANDOC=&#39;C:/Program Files/RStudio/bin/pandoc&#39;); rmarkdown::run(&#39;&amp;amp;FullPath2/&amp;amp;file.Rmd&#39;, shiny_args = list(port =&amp;amp;PortNumber, launch.browser = FALSE))&amp;quot; /k
+start &amp;quot;&amp;amp;file&amp;quot; &amp;quot;http://127.0.0.1:7924/&amp;amp;file.Rmd&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;if it doesn&amp;rsquo;t work, check your pandoc location.&lt;/p&gt;
+
+&lt;p&gt;It&amp;rsquo;s almost done. Now we have to change the icon. first you have to download an icon with the .ico extension. then you have to act in 4 steps : &lt;/br&gt;
+1. Right click on your file and go in &lt;strong&gt;Properties&lt;/strong&gt;. &lt;/br&gt;
+2. Choose the &lt;strong&gt;Shortcut&lt;/strong&gt; tab. &lt;/br&gt;
+3. Then go in &lt;strong&gt;Change Icon&amp;hellip;&lt;/strong&gt;. &lt;/br&gt;
+4. In Browse, select the icon you want to see instead. &lt;/br&gt;
+&lt;img src=&#34;../../img/micon_change.png&#34; style = &#34;max-width:640px;&#34;&gt;&lt;/p&gt;
+
+&lt;p&gt;And now it&amp;rsquo;s done! &lt;br&gt;&lt;br&gt;&lt;br&gt;
+Don&amp;rsquo;t hesitate to contact me if you have any comments or suggestions.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

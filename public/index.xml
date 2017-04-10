@@ -6,8 +6,135 @@
     <description>Recent content on Rstats Luxembourg</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 20 Mar 2017 21:05:33 +0530</lastBuildDate>
+    <lastBuildDate>Mon, 10 Apr 2017 21:13:14 -0500</lastBuildDate>
     <atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Launch shiny from a shortcut</title>
+      <link>/portfolio/2017-04-10-launch-a-shiny-app-from-a-shortcut/</link>
+      <pubDate>Mon, 10 Apr 2017 21:13:14 -0500</pubDate>
+      
+      <guid>/portfolio/2017-04-10-launch-a-shiny-app-from-a-shortcut/</guid>
+      <description>&lt;p&gt;Hello,&lt;/p&gt;
+
+&lt;p&gt;In this post I will explain how to launch a shiny application from a shortcut. just like that:
+&lt;video controls=&#34;&#34; height=&#34;400&#34; width=&#34;640&#34;&gt;
+  &lt;source src=&#34;./img/launch_icon.mp4&#34; type=&#34;video/mp4&#34;/&gt;
+&lt;/video&gt;&lt;/p&gt;
+
+&lt;p&gt;It&amp;rsquo;s short and usefull if you work with colleagues that don&amp;rsquo;t know a clue about R and just want to use your shiny app. &lt;del&gt;I suggest you to follow this guide. Your colleagues will double click on the shortcut and directly be in front of their application.&lt;/del&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;h4&gt;If you are on MAC:&lt;/h4&gt;
+Open a text editor and write the following lines :&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt; Rscript &#39;&amp;amp;FullPath/&amp;amp;file.R&#39; &amp;amp;
+ open http://127.0.0.1:&amp;amp;PortNumber/;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;&amp;amp;&lt;/strong&gt; allows you to write more command lines even if the shell is still busy with the previous line. The second line open your web browser with the chosen address. A concrete example gives that:
+&lt;img src=&#34;./img/launch_code.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;On the second line, &lt;strong&gt;7990&lt;/strong&gt; refers to the choosen port in your shiny app. If you haven&amp;rsquo;t choosen one, go back to the file where you have wrote the application and add to shinyApp: &lt;strong&gt;options = list(port= 7990)&lt;/strong&gt;, just like that:&lt;br&gt;
+&lt;strong&gt;shinyApp(ui=ui,server=server, options = list(port=7990))&lt;/strong&gt;&lt;br&gt;&lt;/p&gt;
+
+&lt;p&gt;if you use a &lt;strong&gt;.Rmd&lt;/strong&gt; document, you should write this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt; Rscript -e  &amp;quot;rmarkdown::run(&#39;&amp;amp;FullPath/&amp;amp;file.Rmd&#39;, shiny_args = list(port=&amp;amp;PortNumber))&amp;quot; &amp;amp;
+ open http://127.0.0.1:&amp;amp;PortNumber/&amp;amp;file.Rmd;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Replace &amp;amp;FullPath, &amp;amp;file and &amp;amp;PortNumber by the file path, the file name and the chosen port. &lt;br&gt; &lt;br&gt;
+Then save it with the  &lt;strong&gt;&amp;rdquo;.command&amp;rdquo;&lt;/strong&gt; extension and try to launch your shiny application from the shortcut. if you have a message saying that the file could not be executed because you do not have appropriate access privileges, open your terminal and write the following line:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;chmod u+x &amp;amp;FullPath/&amp;amp;file.command
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Then it should work :) &lt;br&gt;
+We are almost done, now we have to add another shortcut icon to make it look more &lt;del&gt;user&lt;/del&gt; friendly. For that, go on google and download free &lt;strong&gt;.icns&lt;/strong&gt; icons. I have download some icons on &lt;a href=&#34;http://www.easyicon.net/&#34;&gt;easyicon&lt;/a&gt;.
+To change the icon you just need to go in &amp;ldquo;get info&amp;rdquo; and drag your new icon to the previous one, just like bellow:&lt;br&gt;
+&lt;video controls=&#34;&#34; height=&#34;400&#34; width=&#34;640&#34;&gt;
+  &lt;source src=&#34;./img/change_icon.mp4&#34; type=&#34;video/mp4&#34; /&gt;
+&lt;/video&gt;
+&lt;br&gt;&lt;br&gt;
+&lt;h4&gt;If you are on Windows:&lt;/h4&gt;
+Open a text editor and write the following lines:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;start &amp;quot;&amp;quot; &amp;quot;&amp;amp;FullPath1\Rscript.exe&amp;quot; &amp;amp;FullPath2\&amp;amp;file.R  /k
+start &amp;quot;Name&amp;quot; &amp;quot;http://127.0.0.1:&amp;amp;PortNumber/&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;/k&lt;/strong&gt; allows you to write something in the command prompt even if the Prompt is busy with the previous line. A concrete example gives that :
+&lt;img src=&#34;./img/mlaunch_code.png&#34;  /&gt;&lt;/p&gt;
+
+&lt;p&gt;Then you can save your file with a &lt;strong&gt;.bat&lt;/strong&gt; extension. &lt;br&gt;
+Be carefull, if you want to launch a &lt;strong&gt;.Rmd&lt;/strong&gt; you should use this code instead :&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;start &amp;quot;&amp;amp;FullPath1\R.exe&amp;quot; -e &amp;quot;Sys.setenv(RSTUDIO_PANDOC=&#39;C:/Program Files/RStudio/bin/pandoc&#39;); rmarkdown::run(&#39;&amp;amp;FullPath2/&amp;amp;file.Rmd&#39;, shiny_args = list(port =&amp;amp;PortNumber, launch.browser = FALSE))&amp;quot; /k
+start &amp;quot;&amp;amp;file&amp;quot; &amp;quot;http://127.0.0.1:7924/&amp;amp;file.Rmd&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;if it doesn&amp;rsquo;t work, check your pandoc location.&lt;/p&gt;
+
+&lt;p&gt;It&amp;rsquo;s almost done. Now we have to change the icon. first you have to download an icon with the .ico extension. then you have to act in 4 steps : &lt;/br&gt;
+1. Right click on your file and go in &lt;strong&gt;Properties&lt;/strong&gt;. &lt;/br&gt;
+2. Choose the &lt;strong&gt;Shortcut&lt;/strong&gt; tab. &lt;/br&gt;
+3. Then go in &lt;strong&gt;Change Icon&amp;hellip;&lt;/strong&gt;. &lt;/br&gt;
+4. In Browse, select the icon you want to see instead. &lt;/br&gt;
+&lt;img src=&#34;./img/micon_change.png&#34; style = &#34;max-width:640px;&#34;&gt;&lt;/p&gt;
+
+&lt;p&gt;And now it&amp;rsquo;s done! &lt;br&gt;&lt;br&gt;&lt;br&gt;
+Don&amp;rsquo;t hesitate to contact me if you have any comments or suggestions.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>R and d3js, how to make them communicate</title>
+      <link>/portfolio/d3jsandR_communication/</link>
+      <pubDate>Thu, 23 Jul 2015 21:13:14 -0500</pubDate>
+      
+      <guid>/portfolio/d3jsandR_communication/</guid>
+      <description>&lt;!-- BLOGDOWN-BODY-BEFORE
+
+/BLOGDOWN-BODY-BEFORE --&gt;
+
+&lt;p&gt;Hello,&lt;/p&gt;
+&lt;p&gt;In this post we will focus ourself on how to integrate a message from R to javascript. More precisely, we will focus on the basic key words and knowledge to integrate a d3.js graphic into shiny, just like &lt;a href=&#34;http://51.254.215.145:3838/shiny-fret/&#34;&gt;here&lt;/a&gt;. &lt;del&gt;If you have no clue about what shiny is. I suggest you to see some of my apps here and if you want to learn more, check this &lt;a href=&#34;https://shiny.rstudio.com/tutorial/lesson1/&#34;&gt;tutorial&lt;/a&gt;.&lt;/del&gt; &lt;del&gt;To write this post I inspire myself of &lt;a href=&#34;https://myinspirationinformation.com/visualisation/d3-js/integrating-d3-js-into-r-shiny&#34;&gt;James Thomson ’s blog&lt;/a&gt; and a &lt;a href=&#34;http://shiny.rstudio.com/gallery/server-to-client-custom-messages.html&#34;&gt;shiny app&lt;/a&gt; from Rstudio.&lt;/del&gt; If you have any issue to make shiny and javascript communicate after reading this post, I suggest you to go back to this simple &lt;a href=&#34;http://shiny.rstudio.com/gallery/server-to-client-custom-messages.html&#34;&gt;shiny app&lt;/a&gt; from Rstudio.&lt;br&gt;&lt;br&gt; First of all, you will create a folder where you will put your data file (.csv, .txt, etc..) and your app.R (or ui.R and server.R). In this folder, you will create a new folder that you will name “www”. You will put your .css and .js file inside “www”. &lt;br&gt;&lt;br&gt; &lt;img src=&#34;./Users/user/Desktop/Clef_USB/data_science/hugo/static/img/portfolio/folder_www.png&#34; alt=&#34;&#34; /&gt;&lt;br&gt;&lt;/p&gt;
+&lt;p&gt;To make R and d3.js communicate, you will have to put some key words in the server part, the ui part and the .js file.&lt;br&gt;&lt;br&gt; &lt;strong&gt;in server.R&lt;/strong&gt;, put your data that you want to send to javascript in an &lt;strong&gt;observe({ })&lt;/strong&gt; function. Just like bellow:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;function(input, output, session) {
+    observe({
+        dataSendToJs = &amp;quot;Hello World&amp;quot;
+        session$sendCustomMessage(type = &amp;#39;nameOfTheMessage&amp;#39;,dataSendToJs)
+    })
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;session$sendCustomMessage( )&lt;/strong&gt; allows you to send your data from shiny to javascript. &lt;br&gt;&lt;br&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;in ui.R&lt;/strong&gt;, source the javascript document via a tag function.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;fluidPage(
+  titlePanel(&amp;quot;Example&amp;quot;),
+  fluidRow(
+  #Shiny way to integrate html code in the web page
+  tags$head(tags$script(src = &amp;quot;message.js&amp;quot;))
+  )
+)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;br&gt; &lt;strong&gt;in .js&lt;/strong&gt;, code has to begin with &lt;strong&gt;“Shiny.addCustomMessageHandler(”nameOfTheMessage“, function(message) {”&lt;/strong&gt; like the following example. Don’t forget message represents data from R that javascript will read so it’s better to transform them to json data. You can do it in R via the function &lt;code&gt;jsonlite::toJSON()&lt;/code&gt;.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;Shiny.addCustomMessageHandler(&amp;quot;nameOfTheMessage&amp;quot;,
+                                      function(message) {
+                                              alert(JSON.stringify(message));
+                                      });&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Now it should work! You can find the whole process in this repository. We have begin with something simple but you can do more complex thing with same logic.&lt;/p&gt;
+&lt;p&gt;Be carefull, if you’re working locally, you have to make some modification: First, you need to have a webserver. I use &lt;a href=&#34;https://chrome.google.com/webstore/detail/web-server-for-chrome/ofhbbkphhbklhfoeikjpcbhemlocgigb?hl=en&#34;&gt;web server for chrome&lt;/a&gt;. If you choose to use the same web server, it’s very simple. &lt;br&gt; First, in “CHOOSE FOLDER”, ou have to choose the “www” folder that you have made previously, then a web server url will appear. Click on it, then a new web page with the different files from “www” should pop-up.&lt;br&gt;&lt;br&gt; &lt;img src=&#34;./Users/user/Desktop/Clef_USB/data_science/hugo/static/img/portfolio/webserver_source.png&#34; style = &#34;max-width:640px;&#34;&gt; &lt;br&gt;&lt;br&gt; In ui.R (or the ui part of your single-file shiny app), source d3.min.js and all “.css” and “.js” files as follow:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;#http://127.0.0.1:8887 represents the web server URL
+tags$head(tags$script(src = &amp;quot;http://127.0.0.1:8887/d3.min.js&amp;quot;))&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Now it should work :) &lt;br&gt;&lt;br&gt; You can see a complete and reproductable example in &lt;a href=&#34;https://github.com/woozaa/fret_Lux&#34;&gt;GitHub&lt;/a&gt;.&lt;br&gt; Don’t hesitate to contact me if you have any comments or suggestions.&lt;/p&gt;
+
+
+&lt;!-- BLOGDOWN-HEAD
+
+
+
+
+/BLOGDOWN-HEAD --&gt;
+</description>
+    </item>
     
     <item>
       <title>Who are we?</title>
