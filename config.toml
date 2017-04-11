@@ -16,12 +16,6 @@ ignoreFiles = ["\\.Rmd$", "_files$", "_cache$"]
 [[params.navlinks]]
     name = "Get in touch"
     url = "contact/"
-[[menu.main]]
-    name = "GitHub"
-    url = "https://github.com/b-rodrigues/rstats_lux"
-[[menu.main]]
-    name = "Twitter"
-    url = "https://twitter.com/rstudio"
 
 [params]
     description = "A website for users of the R programming language in Luxembourg"

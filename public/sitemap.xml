@@ -7,18 +7,12 @@
   </url>
   
   <url>
-    <loc>/about/</loc>
-    <lastmod>2017-03-20T21:05:33+05:30</lastmod>
+    <loc>/categories/</loc>
+    <priority>0</priority>
   </url>
   
   <url>
     <loc>/contact/</loc>
-    <lastmod>2016-11-06T13:00:25+05:30</lastmod>
-  </url>
-  
-  <url>
-    <loc>/categories/</loc>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -48,6 +42,10 @@
   <url>
     <loc>/tags/</loc>
     <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/about/</loc>
   </url>
   
 </urlset>
