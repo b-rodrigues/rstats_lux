@@ -23,5 +23,27 @@ You can get to know us better by clicking &lt;a href=&#34;http://www.rdata.lu/ab
 </description>
     </item>
     
+    <item>
+      <title>Visualising unemployment rate by Canton in Luxembourg</title>
+      <link>/portfolio/2017-04-11-visualising-unemployment-rate-by-canton-in-luxembourg/</link>
+      <pubDate>Tue, 11 Apr 2017 06:25:41 +0200</pubDate>
+      
+      <guid>/portfolio/2017-04-11-visualising-unemployment-rate-by-canton-in-luxembourg/</guid>
+      <description>&lt;!-- BLOGDOWN-BODY-BEFORE
+
+/BLOGDOWN-BODY-BEFORE --&gt;
+
+&lt;p&gt;In this post we’re going to draw a map with unemployment rates by canton. Cantons are what the administrative subdivisions are called in Luxembourg.&lt;/p&gt;
+
+
+&lt;!-- BLOGDOWN-HEAD
+
+
+
+
+/BLOGDOWN-HEAD --&gt;
+</description>
+    </item>
+    
   </channel>
 </rss>

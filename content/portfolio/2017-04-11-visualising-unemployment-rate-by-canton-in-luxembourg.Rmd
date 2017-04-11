@@ -1,0 +1,9 @@
+---
+date: 2017-04-11T06:25:41+02:00
+title: "Visualising unemployment rate by Canton in Luxembourg"
+author: Bruno Rodrigues
+tags: R
+---
+
+In this post we're going to draw a map with unemployment rates by canton. Cantons are what the administrative
+subdivisions are called in Luxembourg.
