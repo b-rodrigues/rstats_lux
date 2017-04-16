@@ -17,11 +17,9 @@ knitr::opts_chunk$set(collapse = TRUE)
 Hello,
 
 In this post we will focus ourself on how to integrate a message from R to javascript. More precisely, we will focus on the basic key words and knowledge to integrate a d3.js graphic into shiny, just like [here](http://51.254.215.145:3838/shiny-fret/).
-~~If you have no clue about what shiny is. I suggest you to see some of my apps here  and if you want to learn more, check this [tutorial](https://shiny.rstudio.com/tutorial/lesson1/).~~
-~~To write this post I inspire myself of [James Thomson 's blog](https://myinspirationinformation.com/visualisation/d3-js/integrating-d3-js-into-r-shiny) and  a [shiny app](  http://shiny.rstudio.com/gallery/server-to-client-custom-messages.html)  from Rstudio.~~
 If you have any issue to make shiny and javascript communicate after reading this post, I suggest you to go back to this simple [shiny app](  http://shiny.rstudio.com/gallery/server-to-client-custom-messages.html)  from Rstudio.<br><br>
 First of all, you will create a folder where you will put your data file (.csv, .txt, etc..) and your app.R (or ui.R and server.R). In this folder,  you will create a new folder that you will name "www". You will put your .css and .js file inside "www". <br><br>
-![](/Users/user/Desktop/Clef_USB/data_science/hugo/static/img/portfolio/folder_www.png)<br>
+<img src="img/folder_www.png" style = "max-width:100%;"> <br><br>
 
 To make R and d3.js communicate, you will have to put some key words in the server part, the ui part and the .js file.<br><br>
 **in server.R**, put your data that you want to send to javascript in an **observe({ })** function. Just like bellow:
@@ -59,7 +57,7 @@ Now it should work! You can find the whole process in this repository. We have b
 Be carefull, if you're working locally, you have to make some modification:
 First, you need to have a webserver. I use [web server for chrome](https://chrome.google.com/webstore/detail/web-server-for-chrome/ofhbbkphhbklhfoeikjpcbhemlocgigb?hl=en). If you choose to use the same web server, it's very simple. <br>
 First, in "CHOOSE FOLDER", ou have to choose the "www" folder that you have made previously, then a  web server url will appear. Click on it, then a new web page with the different files from "www" should pop-up.<br><br>
-<img src="/Users/user/Desktop/Clef_USB/data_science/hugo/static/img/portfolio/webserver_source.png" style = "max-width:640px;"> <br><br>
+<img src="img/webserver_source.png" style = "max-width:100%;"> <br><br>
 In ui.R (or the ui part of your single-file shiny app), source d3.min.js and all ".css" and ".js" files as follow:
 ```
 #http://127.0.0.1:8887 represents the web server URL
