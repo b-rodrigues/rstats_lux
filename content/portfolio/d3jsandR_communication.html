@@ -1,0 +1,45 @@
+---
+title: "R and d3js, how to make them communicate"
+author: "Kevin Rosamont"
+date: 2015-07-23T21:13:14-05:00
+categories: ["Shiny App"]
+tags: ["d3js", "shiny"]
+image : "img/portfolio/scanner_data.jpg"
+showonlyimage : true
+weight : 7
+description : "Shiny application where you can analyze consummer price index of differents COICOP at different level."
+---
+
+<!-- BLOGDOWN-HEAD -->
+<!-- /BLOGDOWN-HEAD -->
+
+<!-- BLOGDOWN-BODY-BEFORE -->
+<!-- /BLOGDOWN-BODY-BEFORE -->
+<p>Hello,</p>
+<p>In this post we will focus ourself on how to integrate a message from R to javascript. More precisely, we will focus on the basic key words and knowledge to integrate a d3.js graphic into shiny, just like <a href="http://51.254.215.145:3838/shiny-fret/">here</a>. <del>If you have no clue about what shiny is. I suggest you to see some of my apps here and if you want to learn more, check this <a href="https://shiny.rstudio.com/tutorial/lesson1/">tutorial</a>.</del> <del>To write this post I inspire myself of <a href="https://myinspirationinformation.com/visualisation/d3-js/integrating-d3-js-into-r-shiny">James Thomson ’s blog</a> and a <a href="http://shiny.rstudio.com/gallery/server-to-client-custom-messages.html">shiny app</a> from Rstudio.</del> If you have any issue to make shiny and javascript communicate after reading this post, I suggest you to go back to this simple <a href="http://shiny.rstudio.com/gallery/server-to-client-custom-messages.html">shiny app</a> from Rstudio.<br><br> First of all, you will create a folder where you will put your data file (.csv, .txt, etc..) and your app.R (or ui.R and server.R). In this folder, you will create a new folder that you will name “www”. You will put your .css and .js file inside “www”. <br><br> <img src="/Users/user/Desktop/Clef_USB/data_science/hugo/static/img/portfolio/folder_www.png" /><br></p>
+<p>To make R and d3.js communicate, you will have to put some key words in the server part, the ui part and the .js file.<br><br> <strong>in server.R</strong>, put your data that you want to send to javascript in an <strong>observe({ })</strong> function. Just like bellow:</p>
+<pre><code>function(input, output, session) {
+    observe({
+        dataSendToJs = &quot;Hello World&quot;
+        session$sendCustomMessage(type = &#39;nameOfTheMessage&#39;,dataSendToJs)
+    })
+}</code></pre>
+<p><strong>session$sendCustomMessage( )</strong> allows you to send your data from shiny to javascript. <br><br></p>
+<p><strong>in ui.R</strong>, source the javascript document via a tag function.</p>
+<pre><code>fluidPage(
+  titlePanel(&quot;Example&quot;),
+  fluidRow(
+  #Shiny way to integrate html code in the web page
+  tags$head(tags$script(src = &quot;message.js&quot;))
+  )
+)</code></pre>
+<p><br> <strong>in .js</strong>, code has to begin with <strong>“Shiny.addCustomMessageHandler(”nameOfTheMessage“, function(message) {”</strong> like the following example. Don’t forget message represents data from R that javascript will read so it’s better to transform them to json data. You can do it in R via the function <code>jsonlite::toJSON()</code>.</p>
+<pre><code>Shiny.addCustomMessageHandler(&quot;nameOfTheMessage&quot;,
+                                      function(message) {
+                                              alert(JSON.stringify(message));
+                                      });</code></pre>
+<p>Now it should work! You can find the whole process in this repository. We have begin with something simple but you can do more complex thing with same logic.</p>
+<p>Be carefull, if you’re working locally, you have to make some modification: First, you need to have a webserver. I use <a href="https://chrome.google.com/webstore/detail/web-server-for-chrome/ofhbbkphhbklhfoeikjpcbhemlocgigb?hl=en">web server for chrome</a>. If you choose to use the same web server, it’s very simple. <br> First, in “CHOOSE FOLDER”, ou have to choose the “www” folder that you have made previously, then a web server url will appear. Click on it, then a new web page with the different files from “www” should pop-up.<br><br> <img src="/Users/user/Desktop/Clef_USB/data_science/hugo/static/img/portfolio/webserver_source.png" style = "max-width:640px;"> <br><br> In ui.R (or the ui part of your single-file shiny app), source d3.min.js and all “.css” and “.js” files as follow:</p>
+<pre><code>#http://127.0.0.1:8887 represents the web server URL
+tags$head(tags$script(src = &quot;http://127.0.0.1:8887/d3.min.js&quot;))</code></pre>
+<p>Now it should work :) <br><br> You can see a complete and reproductable example in <a href="https://github.com/woozaa/fret_Lux">GitHub</a>.<br> Don’t hesitate to contact me if you have any comments or suggestions.</p>
