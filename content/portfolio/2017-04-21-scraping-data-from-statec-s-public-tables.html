@@ -1,80 +1,15 @@
-<!DOCTYPE html>
-<html lang="en-us">
-<head><meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>Scraping data from STATEC&#39;s public tables</title>
-<meta name="description" content="A website for users of the R programming language in Luxembourg">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="robots" content="all,follow">
-<meta name="googlebot" content="index,follow,snippet,archive">
-<link rel="stylesheet" href="../../css/bootstrap.min.css">
-<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:400,300,700,400italic">
-<link rel="stylesheet" href="../../css/font-awesome.min.css">
-<link rel="stylesheet" href="../../css/owl.carousel.css">
-<link rel="stylesheet" href="../../css/owl.theme.css">
+---
+date: 2017-04-21T06:34:55+02:00
+title: "Scraping data from STATEC's public tables"
+author: Bruno Rodrigues
+image : "img/scrap.png"
+showonlyimage : false
+categories: ["R"]
+tags: ["R"]
+weight : 1
+---
 
-
-  <link href="../../css/style.default.css" rel="stylesheet" id="theme-stylesheet">
-
-
-<link href="../../css/custom.css" rel="stylesheet">
-<link rel="shortcut icon" href="../../img/favicon.png">
-
-
-</head>
-<body>
-  <div id="all">
-      <div class="container-fluid">
-          <div class="row row-offcanvas row-offcanvas-left">
-              <div id="sidebar" class="col-xs-6 col-sm-4 col-md-3 sidebar-offcanvas">
-  <div class="sidebar-content">
-    <h1 class="sidebar-heading"><a href="../../">Rdata Luxembourg</a></h1>
-    
-    <ul class="sidebar-menu">
-      
-      
-        <li><a href="../../about/">About</a></li>
-      
-        <li><a href="../../contact/">Get in touch</a></li>
-      
-    </ul>
-    <p class="social">
-  
-  
-  
-  
-  
-  
-  
-  
-</p>
-
-
-    <div class="copyright">
-      <p class="credit">
-        
-        | Template by <a href="https://bootstrapious.com/free-templates" class="external">Bootstrapious.com</a>
-
-&amp; ported to Hugo by <a href="https://github.com/kishaningithub">Kishan B</a>
-
-      </p>
-    </div>
-  </div>
-</div>
-
-              
-<div class="col-xs-12 col-sm-8 col-md-9 content-column white-background">
-  <div class="small-navbar visible-xs">
-  <button type="button" data-toggle="offcanvas" class="btn btn-ghost pull-left"> <i class="fa fa-align-left"> </i>Menu</button>
-  <h1 class="small-navbar-heading"><a href="../../">Rdata Luxembourg</a></h1>
-</div>
-
-  <div class="row">
-    <div class="col-lg-8">
-      <div class="content-column-content">
-         <h1>Scraping data from STATEC&#39;s public tables</h1>
-         <h4>April 21, 2017 by Bruno Rodrigues </h4>
-         <!-- BLOGDOWN-HEAD -->
+<!-- BLOGDOWN-HEAD -->
 <!-- /BLOGDOWN-HEAD -->
 
 <!-- BLOGDOWN-BODY-BEFORE -->
@@ -185,25 +120,3 @@ head(clean_unemp)</code></pre>
 ## #   employed population` &lt;chr&gt;, Unemployed &lt;chr&gt;, `Unemployment rate (in
 ## #   %)` &lt;chr&gt;</code></pre>
 <p>By using <code>tidyr::gather()</code> and then <code>tidyr::spread()</code> we get a nice data set where each column is a variable and each row is an observation. I advise you run the above code line by line and try to understand what each function does.</p>
-
-         
-      </div>
-    </div>
-  </div>
-</div>
-
-          </div>
-      </div>
-  </div>
-  <script src="../../js/jquery.min.js"></script>
-<script src="../../js/bootstrap.min.js"></script>
-<script src="../../js/jquery.cookie.js"> </script>
-<script src="../../js/ekko-lightbox.js"></script>
-<script src="../../js/jquery.scrollTo.min.js"></script>
-<script src="../../js/masonry.pkgd.min.js"></script>
-<script src="../../js/imagesloaded.pkgd.min.js"></script>
-<script src="../../js/owl.carousel.min.js"></script>
-<script src="../../js/front.js"></script>
-
-</body>
-</html>

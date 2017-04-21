@@ -2,4 +2,8 @@ base
 xml2
 rvest
 dplyr
+<<<<<<< HEAD
+=======
+tidyr
+>>>>>>> bruno_posts
 purrr
