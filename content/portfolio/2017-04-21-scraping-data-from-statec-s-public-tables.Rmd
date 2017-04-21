@@ -1,5 +1,5 @@
 ---
-date: 2017-04-19T06:25:41+02:00
+date: 2017-04-21T06:34:55+02:00
 title: "Scraping data from STATEC's public tables"
 author: Bruno Rodrigues
 tags: R
