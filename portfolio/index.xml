@@ -44,7 +44,8 @@ You can get to know us better by clicking &lt;a href=&#34;http://www.rdata.lu/ab
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(rvest)
 library(dplyr)
 library(tidyr)
-library(purrr)&lt;/code&gt;&lt;/pre&gt;
+library(purrr)
+library(janitor)&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Now, using &lt;code&gt;rvest::read_html()&lt;/code&gt;, we can download the whole html page:&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;page_unemp &amp;lt;- read_html(&amp;quot;http://www.statistiques.public.lu/stat/TableViewer/tableViewHTML.aspx?ReportId=12950&amp;amp;IF_Language=eng&amp;amp;MainTheme=2&amp;amp;FldrName=3&amp;amp;RFPath=91&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Now, we need to extract the table from the html page, and we do this by using &lt;code&gt;rvest::html_nodes()&lt;/code&gt; and by providing this function with the name of the class of the object we’re interested in, namely, the table.&lt;/p&gt;
@@ -120,27 +121,28 @@ head(clean_unemp)&lt;/code&gt;&lt;/pre&gt;
 ## # ... with 13 more variables: `2003` &amp;lt;dbl&amp;gt;, `2004` &amp;lt;dbl&amp;gt;, `2005` &amp;lt;dbl&amp;gt;,
 ## #   `2006` &amp;lt;dbl&amp;gt;, `2007` &amp;lt;dbl&amp;gt;, `2008` &amp;lt;dbl&amp;gt;, `2009` &amp;lt;dbl&amp;gt;, `2010` &amp;lt;dbl&amp;gt;,
 ## #   `2011` &amp;lt;dbl&amp;gt;, `2012` &amp;lt;dbl&amp;gt;, `2013` &amp;lt;dbl&amp;gt;, `2014` &amp;lt;dbl&amp;gt;, Measures &amp;lt;chr&amp;gt;&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;This line: &lt;code&gt;map_df(function(x)(gsub(&amp;quot;,&amp;quot;, &amp;quot;.&amp;quot;, x = x)))&lt;/code&gt; calls &lt;code&gt;purrr::map_df()&lt;/code&gt;, which maps a function to each column of a data frame. The function in question is &lt;code&gt;function(x)(gsub(&amp;quot;,&amp;quot;, &amp;quot;.&amp;quot;, x = x))&lt;/code&gt;, which is an anonymous function (meaning it does not have a name) wrapped around &lt;code&gt;gsub&lt;/code&gt;. This function looks for the string “,” and replaces it with “.” in a single column of the data frame. But because we’re mapping this function to all the columns of the data frame with &lt;code&gt;purrr::map_df()&lt;/code&gt;, this substitution happens in each column. We’ not done yet, because these columns are still holding characters. We need to convert each column to a numeric vector and this is what happens in the next line, &lt;code&gt;mutate_at(vars(matches(&amp;quot;200*&amp;quot;)), as.numeric)&lt;/code&gt;. Each column that starts with the string “20” is converted to numeric with &lt;code&gt;dplyr::mutate_at()&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;This line: &lt;code&gt;map_df(function(x)(gsub(&amp;quot;,&amp;quot;, &amp;quot;.&amp;quot;, x = x)))&lt;/code&gt; calls &lt;code&gt;purrr::map_df()&lt;/code&gt;, which maps a function to each column of a data frame. The function in question is &lt;code&gt;function(x)(gsub(&amp;quot;,&amp;quot;, &amp;quot;.&amp;quot;, x = x))&lt;/code&gt;, which is an anonymous function (meaning it does not have a name) wrapped around &lt;code&gt;gsub&lt;/code&gt;. This function looks for the string “,” and replaces it with “.” in a single column of the data frame. But because we’re mapping this function to all the columns of the data frame with &lt;code&gt;purrr::map_df()&lt;/code&gt;, this substitution happens in each column. We’ not done yet, because these columns are still holding characters. We need to convert each column to a numeric vector and this is what happens in the next line, &lt;code&gt;mutate_at(vars(matches(&amp;quot;\\d{4}&amp;quot;)), as.numeric)&lt;/code&gt;. Each column that contains exactly for digits (hence the &lt;code&gt;&amp;quot;\\d{4}&amp;quot;&lt;/code&gt;) is converted to numeric with &lt;code&gt;dplyr::mutate_at()&lt;/code&gt;.&lt;/p&gt;
 &lt;p&gt;Now, one last step to really have the data in a nice format:&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;clean_unemp %&amp;gt;% 
     gather(key=year, value, -division, -variable) %&amp;gt;%
-    spread(variable, value
+    spread(variable, value) %&amp;gt;%
+    clean_names(
            ) -&amp;gt; clean_unemp
 
 head(clean_unemp)&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## # A tibble: 6 × 8
-##   division  year `Active population` `of which: Wage-earners`
-##      &amp;lt;chr&amp;gt; &amp;lt;chr&amp;gt;               &amp;lt;chr&amp;gt;                    &amp;lt;chr&amp;gt;
-## 1 Beaufort  2001                 688                      568
-## 2 Beaufort  2002                 742                      631
-## 3 Beaufort  2003                 773                      648
-## 4 Beaufort  2004                 828                      706
-## 5 Beaufort  2005                 866                      719
-## 6 Beaufort  2006                 893                      746
-## # ... with 4 more variables: `of which: Non-wage-earners` &amp;lt;chr&amp;gt;, `Total
-## #   employed population` &amp;lt;chr&amp;gt;, Unemployed &amp;lt;chr&amp;gt;, `Unemployment rate (in
-## #   %)` &amp;lt;chr&amp;gt;&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;By using &lt;code&gt;tidyr::gather()&lt;/code&gt; and then &lt;code&gt;tidyr::spread()&lt;/code&gt; we get a nice data set where each column is a variable and each row is an observation. I advise you run the above code line by line and try to understand what each function does.&lt;/p&gt;
+##   division  year active_population of_which_wage_earners
+##      &amp;lt;chr&amp;gt; &amp;lt;chr&amp;gt;             &amp;lt;chr&amp;gt;                 &amp;lt;chr&amp;gt;
+## 1 Beaufort  2001               688                   568
+## 2 Beaufort  2002               742                   631
+## 3 Beaufort  2003               773                   648
+## 4 Beaufort  2004               828                   706
+## 5 Beaufort  2005               866                   719
+## 6 Beaufort  2006               893                   746
+## # ... with 4 more variables: of_which_non_wage_earners &amp;lt;chr&amp;gt;,
+## #   total_employed_population &amp;lt;chr&amp;gt;, unemployed &amp;lt;chr&amp;gt;,
+## #   unemployment_rate_in_percent &amp;lt;chr&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;By using &lt;code&gt;tidyr::gather()&lt;/code&gt; and then &lt;code&gt;tidyr::spread()&lt;/code&gt; we get a nice data set where each column is a variable and each row is an observation. I advise you run the above code line by line and try to understand what each function does. We finish by cleaning the names of the variables with &lt;code&gt;janitor::clean_names()&lt;/code&gt;!&lt;/p&gt;
 </description>
     </item>
     
