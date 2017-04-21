@@ -20,11 +20,11 @@ tips over [here](http://www.brodrigues.co).
 ## Kevin Rosamont
 ![Kevin Rosamont][2]
 
-Data scientist interested in Data analysis and Visualisation
+Data scientist interested in Data analysis and Visualisation.
  
 I have a background in statistics with deep knowledge in statistical theory and techniques.
 I’ve also gained lots of experience in data mining through my working experience.
-What I'm doing in my daily life? Working in the public domain.
+What I'm doing in my daily life? Working in the public sector.
  
 Besides that, I'm a big soccer fan! Allez les bleus!
 

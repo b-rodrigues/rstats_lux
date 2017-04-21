@@ -1,7 +1,7 @@
 ---
 title: "Welcome to Rdata Luxembourg!"
 author: "Rdata Luxembourg team"
-date: 2017-04-10T20:10:38+02:00
+date: 2017-04-21T07:00:00+02:00
 image : "img/rdata.png"
 showonlyimage : false
 categories: ["R"]
