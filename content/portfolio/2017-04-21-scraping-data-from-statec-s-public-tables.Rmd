@@ -32,6 +32,7 @@ library(rvest)
 library(dplyr)
 library(tidyr)
 library(purrr)
+library(janitor)
 ```
 
 
@@ -40,6 +41,7 @@ library(rvest)
 library(dplyr)
 library(tidyr)
 library(purrr)
+library(janitor)
 ```
 
 Now, using `rvest::read_html()`, we can download the whole html page:
@@ -87,15 +89,16 @@ which is an anonymous function (meaning it does not have a name) wrapped around 
 This function looks for the string "," and replaces it with "." in a single column of the data frame. 
 But because we're mapping this function to all the columns of the data frame with `purrr::map_df()`, 
 this substitution happens in each column. We' not done yet, because these columns are still holding 
-characters. We need to convert each column to a numeric vector and this is what happens in the next line, `mutate_at(vars(matches("200*")), as.numeric)`.
-Each column that starts with the string "20" is converted to numeric with `dplyr::mutate_at()`.
+characters. We need to convert each column to a numeric vector and this is what happens in the next line, `mutate_at(vars(matches("\\d{4}")), as.numeric)`.
+Each column that contains exactly for digits (hence the `"\\d{4}"`) is converted to numeric with `dplyr::mutate_at()`.
 
 Now, one last step to really have the data in a nice format:
 
 ```{r}
 clean_unemp %>% 
     gather(key=year, value, -division, -variable) %>%
-    spread(variable, value
+    spread(variable, value) %>%
+    clean_names(
            ) -> clean_unemp
 
 head(clean_unemp)
@@ -103,4 +106,5 @@ head(clean_unemp)
 
 By using `tidyr::gather()` and then `tidyr::spread()` we get a nice data set where each
 column is a variable and each row is an observation. I advise you run the above code line 
-by line and try to understand what each function does.
+by line and try to understand what each function does. We finish by cleaning the names of the variables
+with `janitor::clean_names()`!
