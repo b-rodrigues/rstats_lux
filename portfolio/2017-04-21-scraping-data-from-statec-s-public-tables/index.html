@@ -21,10 +21,6 @@
 <link rel="shortcut icon" href="../../img/favicon.png">
 
 
-
-
-
-
 </head>
 <body>
   <div id="all">
@@ -78,21 +74,25 @@
       <div class="content-column-content">
          <h1>Scraping data from STATEC&#39;s public tables</h1>
          <h4>April 21, 2017 by Bruno Rodrigues </h4>
+         <!-- BLOGDOWN-HEAD -->
+<!-- /BLOGDOWN-HEAD -->
 
-
+<!-- BLOGDOWN-BODY-BEFORE -->
+<!-- /BLOGDOWN-BODY-BEFORE -->
 <p>A lot of open data is available in Luxembourg’s <a href="https://data.public.lu/en/">open data portal</a>, but sometimes, it is not very easy to download. In the video below, I give you an example of such data and show how you can use <code>rvest</code> to get the data easily.</p>
-<p>After watching the video, take a look at the code below. This code does two things; first it scraps the data as I show in the video, and then it puts the data in a tidy format fur further processing.</p>
+<p>After watching the video, take a look at the code below. This code does two things; first it scrapes the data, and then it puts the data in a tidy format fur further processing.</p>
 <iframe width="100%" height="100%" src="https://youtube.com/embed/902cgrdxZUc" frameborder="0" allowfullscreen style="max-width:100%; height:55vh;">
 </iframe>
-<p>So to summarize the idea of the video; instead of clicking the buttons to download each year’s data (which you would have to do 15 times), it is easier to simple turn off javascript and then scrap the html version of the table. It would be possible, albeit with much more effort, to scrap the tables with javascript enabled, by using a tool such as <a href="http://phantomjs.org/">phantomjs</a>. But since we have the possibility to view the table in html, why not take advantage of it?</p>
-<p>To scrap the data, you will need first to install the <code>rvest</code> and then load it (and let’s also load the other needed packages)</p>
+<p>So to summarize the idea of the video; instead of clicking the buttons to download each year’s data (which you would have to do 15 times), it is easier to simple turn off javascript and then scrape the html version of the table. It would be possible, albeit with much more effort, to scrape the tables with javascript enabled, by using a tool such as <a href="http://phantomjs.org/">phantomjs</a>. But since we have the possibility to view the table in html, why not take advantage of it?</p>
+<p>To scrape the data, you will need first to install the <code>rvest</code> and then load it (and let’s also load the other needed packages)</p>
 <pre class="r"><code>library(rvest)
 library(dplyr)
 library(tidyr)
 library(purrr)</code></pre>
-<pre class="r"><code>page_unemp &lt;- read_html(&quot;http://www.statistiques.public.lu/stat/TableViewer/tableViewHTML.aspx?ReportId=12950&amp;IF_Language=eng&amp;MainTheme=2&amp;FldrName=3&amp;RFPath=91&quot;)
-
-page_unemp %&gt;%
+<p>Now, using <code>rvest::read_html()</code>, we can download the whole html page:</p>
+<pre class="r"><code>page_unemp &lt;- read_html(&quot;http://www.statistiques.public.lu/stat/TableViewer/tableViewHTML.aspx?ReportId=12950&amp;IF_Language=eng&amp;MainTheme=2&amp;FldrName=3&amp;RFPath=91&quot;)</code></pre>
+<p>Now, we need to extract the table from the html page, and we do this by using <code>rvest::html_nodes()</code> and by providing this function with the name of the class of the object we’re interested in, namely, the table.</p>
+<pre class="r"><code>page_unemp %&gt;%
   html_nodes(&quot;.b2020-datatable&quot;) %&gt;% .[[1]] %&gt;% html_table(fill = TRUE) -&gt; data_raw
 
 
@@ -164,7 +164,7 @@ head(clean_unemp)</code></pre>
 ## # ... with 13 more variables: `2003` &lt;dbl&gt;, `2004` &lt;dbl&gt;, `2005` &lt;dbl&gt;,
 ## #   `2006` &lt;dbl&gt;, `2007` &lt;dbl&gt;, `2008` &lt;dbl&gt;, `2009` &lt;dbl&gt;, `2010` &lt;dbl&gt;,
 ## #   `2011` &lt;dbl&gt;, `2012` &lt;dbl&gt;, `2013` &lt;dbl&gt;, `2014` &lt;dbl&gt;, Measures &lt;chr&gt;</code></pre>
-<p>This line <code>map_df(function(x)(gsub(&quot;,&quot;, &quot;.&quot;, x = x)))</code> calls <code>purrr::map_df()</code>, which maps a function to each column of a data frame. The function in question is <code>function(x)(gsub(&quot;,&quot;, &quot;.&quot;, x = x))</code>, which is an anonymous function (meaning it does not have a name). This function looks for the string “,” and replaces it with “.” in a single column of the data frame. But because we’re mapping this function to all the columns of the data frame with <code>purrr::map_df()</code>, this substitution happens in each column. We’ not done yet, because these columns are still holding characters. We need to convert each column to a numeric vector and this is what happens in the next line, <code>mutate_at(vars(matches(&quot;200*&quot;)), as.numeric)</code>. Each column that starts with the string “20” is converted to numeric with <code>dplyr::mutate_at()</code>.</p>
+<p>This line: <code>map_df(function(x)(gsub(&quot;,&quot;, &quot;.&quot;, x = x)))</code> calls <code>purrr::map_df()</code>, which maps a function to each column of a data frame. The function in question is <code>function(x)(gsub(&quot;,&quot;, &quot;.&quot;, x = x))</code>, which is an anonymous function (meaning it does not have a name) wrapped around <code>gsub</code>. This function looks for the string “,” and replaces it with “.” in a single column of the data frame. But because we’re mapping this function to all the columns of the data frame with <code>purrr::map_df()</code>, this substitution happens in each column. We’ not done yet, because these columns are still holding characters. We need to convert each column to a numeric vector and this is what happens in the next line, <code>mutate_at(vars(matches(&quot;200*&quot;)), as.numeric)</code>. Each column that starts with the string “20” is converted to numeric with <code>dplyr::mutate_at()</code>.</p>
 <p>Now, one last step to really have the data in a nice format:</p>
 <pre class="r"><code>clean_unemp %&gt;% 
     gather(key=year, value, -division, -variable) %&gt;%
@@ -173,20 +173,18 @@ head(clean_unemp)</code></pre>
 
 head(clean_unemp)</code></pre>
 <pre><code>## # A tibble: 6 × 8
-##   division  year `Active population` `of which: Non-wage-earners`
-##      &lt;chr&gt; &lt;chr&gt;               &lt;chr&gt;                        &lt;chr&gt;
-## 1 Beaufort  2001                 688                           85
-## 2 Beaufort  2002                 742                           85
-## 3 Beaufort  2003                 773                           85
-## 4 Beaufort  2004                 828                           80
-## 5 Beaufort  2005                 866                           96
-## 6 Beaufort  2006                 893                           87
-## # ... with 4 more variables: `of which: Wage-earners` &lt;chr&gt;, `Total
+##   division  year `Active population` `of which: Wage-earners`
+##      &lt;chr&gt; &lt;chr&gt;               &lt;chr&gt;                    &lt;chr&gt;
+## 1 Beaufort  2001                 688                      568
+## 2 Beaufort  2002                 742                      631
+## 3 Beaufort  2003                 773                      648
+## 4 Beaufort  2004                 828                      706
+## 5 Beaufort  2005                 866                      719
+## 6 Beaufort  2006                 893                      746
+## # ... with 4 more variables: `of which: Non-wage-earners` &lt;chr&gt;, `Total
 ## #   employed population` &lt;chr&gt;, Unemployed &lt;chr&gt;, `Unemployment rate (in
 ## #   %)` &lt;chr&gt;</code></pre>
 <p>By using <code>tidyr::gather()</code> and then <code>tidyr::spread()</code> we get a nice data set where each column is a variable and each row is an observation. I advise you run the above code line by line and try to understand what each function does.</p>
-
-
 
          
       </div>
