@@ -13,7 +13,7 @@ description : "A simple and short guide to launch shiny directly from a shortcut
 Hello,
 
 In this post I will explain how to launch a shiny application from a shortcut. Just like that:
-<iframe width="100%" height="100%" src="https://www.youtube.com/embed/hFHp8BU6oSk" frameborder="0" allowfullscreen style = "max-width:100%; height:55vh;"></iframe>
+<iframe width="100%" height="100%" src="https://www.youtube.com/embed/https://youtu.be/jyGuPpbYhWk" frameborder="0" allowfullscreen style = "max-width:100%; height:55vh;"></iframe>
 
 It's fast and useful if you work with colleagues that don't have a clue about R and just want to use your shiny app.
 
@@ -52,7 +52,7 @@ Then it should work :) <br>
 We are almost done, now we have to add another shortcut icon to make it look more ~~user~~ friendly. For that, go on google and download free **.icns** icons. I have download some icons on [easyicon](http://www.easyicon.net/).
 To change the icon you just need to go in "get info" and drag your new icon to the previous one, just like below:<br>
 
-<iframe width="100%" height="100%" src="https://www.youtube.com/embed/kH9jOk2PvVw" frameborder="0" allowfullscreen style = "max-width:100%; height:55vh;"></iframe>
+<iframe width="100%" height="100%" src="https://www.youtube.com/embed/https://youtu.be/j_Vp0HL2b90" frameborder="0" allowfullscreen style = "max-width:100%; height:55vh;"></iframe>
 <br><br>
 
 
