@@ -1,18 +1,13 @@
 ---
 title: "R d3js, and how to make them communicate"
 author: "Kevin Rosamont"
-date: 2017-04-23T21:13:14-05:00
+date: 2017-05-16T06:00:00+02:00
 categories: ["Shiny App"]
 tags: ["d3js", "shiny"]
 image : "img/synergy.jpg"
-showonlyimage : true
-weight : 7
-description : "Shiny application where you can analyze consummer price index of differents COICOP at different level."
+showonlyimage : false
+weight : 1
 ---
-
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(collapse = TRUE)
-```
 
 Hello everyone,
 
@@ -73,7 +68,7 @@ If you choose to use the same web server, it's very simple. <br>
 First, in "CHOOSE FOLDER", you have to choose the `www` folder that you made previously, then a web server url will appear.
 Click on it, then a new web page with the different files from `www` should pop-up.<br><br>
 <img src="/img/webserver_source.png" style = "max-width:100%;"> <br><br>
-In `ui.R` (or the ui part of your single-file shiny app), source `d3.min.js` and all `.css` and `.js` files as follow:
+In `ui.R` (or the ui part of your single-file shiny app), source `d3.min.js` and all `.css` and `.js` files as follows:
 
 ```
 #http://127.0.0.1:8887 represents the web server URL
