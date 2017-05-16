@@ -9,21 +9,6 @@
     <atom:link href="/categories/r/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
-      <title>Welcome to Rdata Luxembourg!</title>
-      <link>/portfolio/2017-04-21-welcome-to-rdata-luxembourg/</link>
-      <pubDate>Fri, 21 Apr 2017 07:00:00 +0200</pubDate>
-      
-      <guid>/portfolio/2017-04-21-welcome-to-rdata-luxembourg/</guid>
-      <description>&lt;p&gt;Welcome to Rdata Luxembourg! This blog is dedicated to Luxembourg&amp;rsquo;s users of the R programming language.
-In this blog we will publish tips, tricks and tutorials about the R programming language and present
-applications using (but not only) &lt;a href=&#34;https://data.public.lu/en/&#34;&gt;open data from Luxembourg.&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;We are a small group of dedicated users of the R programming language, all living or working in Luxembourg.
-You can get to know us better by clicking &lt;a href=&#34;http://www.rdata.lu/about&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
       <title>Scraping data from STATEC&#39;s public tables</title>
       <link>/portfolio/2017-04-21-scraping-data-from-statec-s-public-tables/</link>
       <pubDate>Fri, 21 Apr 2017 06:34:55 +0200</pubDate>
@@ -142,6 +127,21 @@ head(clean_unemp)&lt;/code&gt;&lt;/pre&gt;
 ## #   total_employed_population &amp;lt;chr&amp;gt;, unemployed &amp;lt;chr&amp;gt;,
 ## #   unemployment_rate_in_percent &amp;lt;chr&amp;gt;&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;By using &lt;code&gt;tidyr::gather()&lt;/code&gt; and then &lt;code&gt;tidyr::spread()&lt;/code&gt; we get a nice data set where each column is a variable and each row is an observation. I advise you run the above code line by line and try to understand what each function does. We finish by cleaning the names of the variables with &lt;code&gt;janitor::clean_names()&lt;/code&gt;!&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Welcome to Rdata Luxembourg!</title>
+      <link>/portfolio/2017-04-21-welcome-to-rdata-luxembourg/</link>
+      <pubDate>Fri, 21 Apr 2017 07:00:00 +0200</pubDate>
+      
+      <guid>/portfolio/2017-04-21-welcome-to-rdata-luxembourg/</guid>
+      <description>&lt;p&gt;Welcome to Rdata Luxembourg! This blog is dedicated to Luxembourg&amp;rsquo;s users of the R programming language.
+In this blog we will publish tips, tricks and tutorials about the R programming language and present
+applications using (but not only) &lt;a href=&#34;https://data.public.lu/en/&#34;&gt;open data from Luxembourg.&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;We are a small group of dedicated users of the R programming language, all living or working in Luxembourg.
+You can get to know us better by clicking &lt;a href=&#34;http://www.rdata.lu/about&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
 </description>
     </item>
     

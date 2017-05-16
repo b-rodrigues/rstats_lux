@@ -6,15 +6,30 @@
     <description>Recent content in Portfolios on Rdata Luxembourg</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 16 May 2017 06:00:00 +0200</lastBuildDate>
+    <lastBuildDate>Fri, 21 Apr 2017 07:00:00 +0200</lastBuildDate>
     <atom:link href="/portfolio/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
-      <title>R d3js, and how to make them communicate</title>
-      <link>/portfolio/2017-05-16-d3jsandR_communication/</link>
-      <pubDate>Tue, 16 May 2017 06:00:00 +0200</pubDate>
+      <title>Welcome to Rdata Luxembourg!</title>
+      <link>/portfolio/2017-04-21-welcome-to-rdata-luxembourg/</link>
+      <pubDate>Fri, 21 Apr 2017 07:00:00 +0200</pubDate>
       
-      <guid>/portfolio/2017-05-16-d3jsandR_communication/</guid>
+      <guid>/portfolio/2017-04-21-welcome-to-rdata-luxembourg/</guid>
+      <description>&lt;p&gt;Welcome to Rdata Luxembourg! This blog is dedicated to Luxembourg&amp;rsquo;s users of the R programming language.
+In this blog we will publish tips, tricks and tutorials about the R programming language and present
+applications using (but not only) &lt;a href=&#34;https://data.public.lu/en/&#34;&gt;open data from Luxembourg.&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;We are a small group of dedicated users of the R programming language, all living or working in Luxembourg.
+You can get to know us better by clicking &lt;a href=&#34;http://www.rdata.lu/about&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>R d3js, and how to make them communicate</title>
+      <link>/portfolio/d3jsandR_communication/</link>
+      <pubDate>Tue, 16 May 2017 21:13:14 -0500</pubDate>
+      
+      <guid>/portfolio/d3jsandR_communication/</guid>
       <description>&lt;!-- BLOGDOWN-HEAD --&gt;
 &lt;!-- /BLOGDOWN-HEAD --&gt;
 
@@ -47,27 +62,12 @@
                                       });&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Now it should work! You can find the whole process in this repository. We started with something simple but you can do more complex things by applyng the same logic.&lt;/p&gt;
 &lt;p&gt;Be careful, if you’re working locally, you have to make some changes: First, you need to have a webserver. I use &lt;a href=&#34;https://chrome.google.com/webstore/detail/web-server-for-chrome/ofhbbkphhbklhfoeikjpcbhemlocgigb?hl=en&#34;&gt;web server for chrome&lt;/a&gt;. If you choose to use the same web server, it’s very simple. &lt;br&gt;&lt;/p&gt;
-&lt;p&gt;First, in “CHOOSE FOLDER”, you have to choose the &lt;code&gt;www&lt;/code&gt; folder that you made previously, then a web server url will appear. Click on it, then a new web page with the different files from &lt;code&gt;www&lt;/code&gt; should pop-up.&lt;br&gt;&lt;br&gt; &lt;img src=&#34;../img/webserver_source.png&#34; style = &#34;max-width:100%;&#34;&gt; &lt;br&gt;&lt;br&gt; In &lt;code&gt;ui.R&lt;/code&gt; (or the ui part of your single-file shiny app), source &lt;code&gt;d3.min.js&lt;/code&gt; and all &lt;code&gt;.css&lt;/code&gt; and &lt;code&gt;.js&lt;/code&gt; files as follows:&lt;/p&gt;
+&lt;p&gt;First, in “CHOOSE FOLDER”, you have to choose the &lt;code&gt;www&lt;/code&gt; folder that you made previously, then a web server url will appear. Click on it, then a new web page with the different files from &lt;code&gt;www&lt;/code&gt; should pop-up.&lt;br&gt;&lt;br&gt; &lt;img src=&#34;../img/webserver_source.png&#34; style = &#34;max-width:100%;&#34;&gt; &lt;br&gt;&lt;br&gt; In &lt;code&gt;ui.R&lt;/code&gt; (or the ui part of your single-file shiny app), source &lt;code&gt;d3.min.js&lt;/code&gt; and all &lt;code&gt;.css&lt;/code&gt; and &lt;code&gt;.js&lt;/code&gt; files as follow:&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;#http://127.0.0.1:8887 represents the web server URL
 tags$head(tags$script(src = &amp;quot;http://127.0.0.1:8887/d3.min.js&amp;quot;))&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;The following video may help you if you have issues to make your application run locally: &lt;iframe width=&#34;100%&#34; height=&#34;100%&#34; src=&#34;https://www.youtube.com/embed/GHRZaiYh2Ac&#34; frameborder=&#34;0&#34; allowfullscreen style = &#34;max-width:100%; height:55vh;&#34;&gt;&lt;/iframe&gt;&lt;/p&gt;
 &lt;p&gt;Now it should work :)&lt;/p&gt;
 &lt;p&gt;&lt;br&gt;&lt;br&gt; You can see a complete and reproducible example over &lt;a href=&#34;https://github.com/woozaa/fret_Lux&#34;&gt;here&lt;/a&gt;.&lt;br&gt; Don’t hesitate to contact me if you have any comments or suggestions.&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Welcome to Rdata Luxembourg!</title>
-      <link>/portfolio/2017-04-21-welcome-to-rdata-luxembourg/</link>
-      <pubDate>Fri, 21 Apr 2017 07:00:00 +0200</pubDate>
-      
-      <guid>/portfolio/2017-04-21-welcome-to-rdata-luxembourg/</guid>
-      <description>&lt;p&gt;Welcome to Rdata Luxembourg! This blog is dedicated to Luxembourg&amp;rsquo;s users of the R programming language.
-In this blog we will publish tips, tricks and tutorials about the R programming language and present
-applications using (but not only) &lt;a href=&#34;https://data.public.lu/en/&#34;&gt;open data from Luxembourg.&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;We are a small group of dedicated users of the R programming language, all living or working in Luxembourg.
-You can get to know us better by clicking &lt;a href=&#34;http://www.rdata.lu/about&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
 </description>
     </item>
     

@@ -1,6 +1,7 @@
 /* your styles go here */
-p img {
+#all > div > div > div.col-xs-12.col-sm-8.col-md-9.content-column.white-background > div.row > div > div > p:nth-child(4) > img, #all > div > div > div.col-xs-12.col-sm-8.col-md-9.content-column.white-background > div.row > div > div > p:nth-child(9) > img {
     height: 280px;
     border-radius: 50%;
     max-width: 100%;
 }
+

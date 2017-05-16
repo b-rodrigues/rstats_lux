@@ -6,7 +6,7 @@ image : "img/rdata.png"
 showonlyimage : false
 categories: ["R"]
 tags: ["R"]
-weight : 1
+weight : 0
 ---
 
 Welcome to Rdata Luxembourg! This blog is dedicated to Luxembourg's users of the R programming language.
