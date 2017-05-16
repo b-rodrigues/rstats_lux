@@ -2,8 +2,8 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>/portfolio/2017-04-21-welcome-to-rdata-luxembourg/</loc>
-    <lastmod>2017-04-21T07:00:00+02:00</lastmod>
+    <loc>/portfolio/2017-05-16-d3jsandr_communication/</loc>
+    <lastmod>2017-05-16T08:00:00+02:00</lastmod>
   </url>
   
   <url>
@@ -12,7 +12,18 @@
   </url>
   
   <url>
+    <loc>/portfolio/2017-04-21-welcome-to-rdata-luxembourg/</loc>
+    <lastmod>2017-04-21T07:00:00+02:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/categories/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/d3js/</loc>
+    <lastmod>2017-05-16T08:00:00+02:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -28,24 +39,37 @@
   
   <url>
     <loc>/tags/r/</loc>
-    <lastmod>2017-04-21T07:00:00+02:00</lastmod>
+    <lastmod>2017-04-21T06:34:55+02:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>/categories/r/</loc>
-    <lastmod>2017-04-21T07:00:00+02:00</lastmod>
+    <lastmod>2017-04-21T06:34:55+02:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>/</loc>
-    <lastmod>2017-04-21T07:00:00+02:00</lastmod>
+    <lastmod>2017-05-16T08:00:00+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/shiny/</loc>
+    <lastmod>2017-05-16T08:00:00+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/categories/shiny-app/</loc>
+    <lastmod>2017-05-16T08:00:00+02:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>/tags/</loc>
+    <lastmod>2017-05-16T08:00:00+02:00</lastmod>
     <priority>0</priority>
   </url>
   
