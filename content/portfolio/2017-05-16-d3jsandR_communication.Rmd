@@ -1,7 +1,7 @@
 ---
 title: "R d3js, and how to make them communicate"
 author: "Kevin Rosamont"
-date: 2017-05-16T21:13:14-05:00
+date: 2017-05-16T08:00:00+02:00
 categories: ["Shiny App"]
 tags: ["d3js", "shiny"]
 image : "img/d3shiny_source.png"
@@ -10,10 +10,6 @@ weight : 1
 description : "In this post we will focus on how to send a message from R to javascript. More precisely, we will focus on the basic keywords and knowledge to
 integrate a d3.js graph into shiny."
 ---
-
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(collapse = TRUE)
-```
 
 Hello everyone,
 
