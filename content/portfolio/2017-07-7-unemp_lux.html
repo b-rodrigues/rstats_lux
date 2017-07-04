@@ -1,0 +1,53 @@
+---
+date: 2017-07-07
+title: "Mapping unemployment in Luxembourg"
+author: Bruno Rodrigues
+image : "img/unemp_lux.png"
+showonlyimage : false
+categories: ["R"]
+tags: ["R"]
+weight : 1
+---
+
+<!-- BLOGDOWN-HEAD -->
+<!-- /BLOGDOWN-HEAD -->
+
+<!-- BLOGDOWN-BODY-BEFORE -->
+<!-- /BLOGDOWN-BODY-BEFORE -->
+<p>In this blog post, I show various ways to create maps using R. You’ll need to install a lot of packages and download two data sets; the unemployment rate in Luxembourg as well as a shapefile.</p>
+<p><code>gganimate</code> is not on CRAN, so you need to install it from Github:</p>
+<pre class="r"><code>devtools::install_github(&quot;dgrtwo/gganimate&quot;)</code></pre>
+<p>The shapefile can be obtained <a href="https://data.public.lu/en/datasets/limites-administratives-du-grand-duche-de-luxembourg/">here</a>.</p>
+<pre class="r"><code>require(maps)
+require(ggplot2)
+library(maptools)
+library(broom)
+library(dplyr)
+library(purrr)
+library(ggiraph)
+library(ggthemes)
+library(mapproj)
+library(gganimate)</code></pre>
+<pre class="r"><code>unemp_lux &lt;- read.csv(&quot;~/Documents/rstats_lux/static/data/unemployment_lux.csv&quot;, header = TRUE)
+head(unemp_lux)</code></pre>
+<pre><code>##   division year active_population of_which_non_wage_earners
+## 1 Beaufort 2001               688                        85
+## 2 Beaufort 2002               742                        85
+## 3 Beaufort 2003               773                        85
+## 4 Beaufort 2004               828                        80
+## 5 Beaufort 2005               866                        96
+## 6 Beaufort 2006               893                        87
+##   of_which_wage_earners total_employed_population unemployed
+## 1                   568                       653         35
+## 2                   631                       716         26
+## 3                   648                       733         40
+## 4                   706                       786         42
+## 5                   719                       815         51
+## 6                   746                       833         60
+##   unemployment_rate_in_percent
+## 1                         5.09
+## 2                         3.50
+## 3                         5.17
+## 4                         5.07
+## 5                         5.89
+## 6                         6.72</code></pre>

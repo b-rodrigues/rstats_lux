@@ -6,10 +6,22 @@
     <description>Recent content in R on Rdata Luxembourg</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 21 Apr 2017 06:34:55 +0200</lastBuildDate>
+    <lastBuildDate>Fri, 07 Jul 2017 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/tags/r/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Mapping unemployment in Luxembourg</title>
+      <link>/portfolio/2017-07-7-unemp_lux/</link>
+      <pubDate>Fri, 07 Jul 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/portfolio/2017-07-7-unemp_lux/</guid>
+      <description>In this blog post, I show various ways to create maps using R. You’ll need to install a lot of packages and download two data sets; the unemployment rate in Luxembourg as well as a shapefile.
+gganimate is not on CRAN, so you need to install it from Github:
+devtools::install_github(&amp;quot;dgrtwo/gganimate&amp;quot;) The shapefile can be obtained here.
+require(maps) require(ggplot2) library(maptools) library(broom) library(dplyr) library(purrr) library(ggiraph) library(ggthemes) library(mapproj) library(gganimate) unemp_lux &amp;lt;- read.csv(&amp;quot;~/Documents/rstats_lux/static/data/unemployment_lux.csv&amp;quot;, header = TRUE) head(unemp_lux) ## division year active_population of_which_non_wage_earners ## 1 Beaufort 2001 688 85 ## 2 Beaufort 2002 742 85 ## 3 Beaufort 2003 773 85 ## 4 Beaufort 2004 828 80 ## 5 Beaufort 2005 866 96 ## 6 Beaufort 2006 893 87 ## of_which_wage_earners total_employed_population unemployed ## 1 568 653 35 ## 2 631 716 26 ## 3 648 733 40 ## 4 706 786 42 ## 5 719 815 51 ## 6 746 833 60 ## unemployment_rate_in_percent ## 1 5.</description>
+    </item>
     
     <item>
       <title>Scraping data from STATEC&#39;s public tables</title>

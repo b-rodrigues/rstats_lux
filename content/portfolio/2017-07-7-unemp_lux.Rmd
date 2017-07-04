@@ -1,0 +1,54 @@
+---
+date: 2017-07-07
+title: "Mapping unemployment in Luxembourg"
+author: Bruno Rodrigues
+image : "img/unemp_lux.png"
+showonlyimage : false
+categories: ["R"]
+tags: ["R"]
+weight : 1
+---
+
+In this blog post, I show various ways to create maps using R. You'll need to install a lot of 
+packages and download two data sets; the unemployment rate in Luxembourg as well as a shapefile.
+
+`gganimate` is not on CRAN, so you need to install it from Github:
+
+```{r, eval=FALSE}
+devtools::install_github("dgrtwo/gganimate")
+```
+
+The shapefile can be obtained [here](https://data.public.lu/en/datasets/limites-administratives-du-grand-duche-de-luxembourg/).
+
+```{r, include=FALSE}
+require(maps)
+require(ggplot2)
+library(maptools)
+library(broom)
+library(dplyr)
+library(purrr)
+library(ggiraph)
+library(ggthemes)
+library(mapproj)
+library(gganimate)
+```
+
+
+```{r, eval=FALSE}
+require(maps)
+require(ggplot2)
+library(maptools)
+library(broom)
+library(dplyr)
+library(purrr)
+library(ggiraph)
+library(ggthemes)
+library(mapproj)
+library(gganimate)
+```
+
+```{r}
+unemp_lux <- read.csv("~/Documents/rstats_lux/static/data/unemployment_lux.csv", header = TRUE)
+head(unemp_lux)
+```
+
