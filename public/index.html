@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en-us">
 <head>
-	<meta name="generator" content="Hugo 0.20.5" /><meta charset="utf-8">
+	<meta name="generator" content="Hugo 0.18.1" /><meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <title>Rdata Luxembourg</title>
 <meta name="description" content="A website for users of the R programming language in Luxembourg">
@@ -91,9 +91,8 @@
                           <h4><a href="./portfolio/2017-07-7-unemp_lux/">Mapping unemployment in Luxembourg</a></h4>
                           <div class="box-masonry-desription">
                               <p>In this blog post, I show various ways to create maps using R. You’ll need to install a lot of packages and download two data sets; the unemployment rate in Luxembourg as well as a shapefile.
-gganimate is not on CRAN, so you need to install it from Github:
-devtools::install_github(&quot;dgrtwo/gganimate&quot;) The shapefile can be obtained here.
-require(maps) require(ggplot2) library(maptools) library(broom) library(dplyr) library(purrr) library(ggiraph) library(ggthemes) library(mapproj) library(gganimate) unemp_lux &lt;- read.csv(&quot;~/Documents/rstats_lux/static/data/unemployment_lux.csv&quot;, header = TRUE) head(unemp_lux) ## division year active_population of_which_non_wage_earners ## 1 Beaufort 2001 688 85 ## 2 Beaufort 2002 742 85 ## 3 Beaufort 2003 773 85 ## 4 Beaufort 2004 828 80 ## 5 Beaufort 2005 866 96 ## 6 Beaufort 2006 893 87 ## of_which_wage_earners total_employed_population unemployed ## 1 568 653 35 ## 2 631 716 26 ## 3 648 733 40 ## 4 706 786 42 ## 5 719 815 51 ## 6 746 833 60 ## unemployment_rate_in_percent ## 1 5.</p>
+To get the unemployment rate in Luxembourg, you can take a look at our previous blog post and simply run the following lines:
+library(rvest) library(dplyr) library(purrr) library(janitor) library(tidyr) page_unemp &lt;- read_html(&quot;http://www.statistiques.public.lu/stat/TableViewer/tableViewHTML.aspx?ReportId=12950&amp;IF_Language=eng&amp;MainTheme=2&amp;FldrName=3&amp;RFPath=91&quot;) data_raw &lt;- page_unemp %&gt;% html_nodes(&quot;.</p>
                           </div>
                       </div>
                   </div>
@@ -103,7 +102,7 @@ require(maps) require(ggplot2) library(maptools) library(broom) library(dplyr) l
                   <div class="box-masonry">
                       
                         
-                        <a href="./portfolio/2017-05-16-d3jsandr_communication/" title="" class="box-masonry-image with-hover-overlay with-hover-icon">
+                        <a href="./portfolio/2017-05-16-d3jsandR_communication/" title="" class="box-masonry-image with-hover-overlay with-hover-icon">
                         
                             <img src="img/d3shiny_source.png" alt="" class="img-responsive">
                         </a>
@@ -111,7 +110,7 @@ require(maps) require(ggplot2) library(maptools) library(broom) library(dplyr) l
                       
                       <div class="box-masonry-text">
                       
-                          <h4><a href="./portfolio/2017-05-16-d3jsandr_communication/">R d3js, and how to make them communicate</a></h4>
+                          <h4><a href="./portfolio/2017-05-16-d3jsandR_communication/">R d3js, and how to make them communicate</a></h4>
                           <div class="box-masonry-desription">
                               <p>Hello everyone,
 In this post we will focus on how to send a message from R to javascript. More precisely, we will focus on the basic keywords and knowledge to integrate a d3.js graph into shiny, just like here. If you have any issue to make shiny and javascript communicate after reading this post, I suggest you to go back to this simple shiny app from Rstudio.

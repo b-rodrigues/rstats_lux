@@ -80,21 +80,31 @@
 <!-- BLOGDOWN-BODY-BEFORE -->
 <!-- /BLOGDOWN-BODY-BEFORE -->
 <p>In this blog post, I show various ways to create maps using R. You’ll need to install a lot of packages and download two data sets; the unemployment rate in Luxembourg as well as a shapefile.</p>
-<p><code>gganimate</code> is not on CRAN, so you need to install it from Github:</p>
-<pre class="r"><code>devtools::install_github(&quot;dgrtwo/gganimate&quot;)</code></pre>
-<p>The shapefile can be obtained <a href="https://data.public.lu/en/datasets/limites-administratives-du-grand-duche-de-luxembourg/">here</a>.</p>
-<pre class="r"><code>require(maps)
-require(ggplot2)
-library(maptools)
-library(broom)
+<p>To get the unemployment rate in Luxembourg, you can take a look at our <a href="http://rdata.lu/portfolio/2017-04-21-scraping-data-from-statec-s-public-tables/">previous blog post</a> and simply run the following lines:</p>
+<pre class="r"><code>library(rvest)
 library(dplyr)
 library(purrr)
-library(ggiraph)
-library(ggthemes)
-library(mapproj)
-library(gganimate)</code></pre>
-<pre class="r"><code>unemp_lux &lt;- read.csv(&quot;~/Documents/rstats_lux/static/data/unemployment_lux.csv&quot;, header = TRUE)
-head(unemp_lux)</code></pre>
+library(janitor)
+library(tidyr)
+
+page_unemp &lt;- read_html(&quot;http://www.statistiques.public.lu/stat/TableViewer/tableViewHTML.aspx?ReportId=12950&amp;IF_Language=eng&amp;MainTheme=2&amp;FldrName=3&amp;RFPath=91&quot;)
+
+data_raw &lt;- page_unemp %&gt;%
+  html_nodes(&quot;.b2020-datatable&quot;) %&gt;% .[[1]] %&gt;% html_table(fill = TRUE)
+
+colnames(data_raw) &lt;- data_raw[1, ]
+
+colnames(data_raw)[1:2] &lt;- c(&quot;division&quot;, &quot;variable&quot;)
+
+data_raw &lt;- data_raw[-c(1,2), ]
+
+unemp_lux &lt;- data_raw %&gt;%
+  map_df(function(x)(gsub(&quot;,&quot;, &quot;.&quot;, x = x))) %&gt;%
+  mutate_at(vars(matches(&quot;\\d{4}&quot;)), as.numeric) %&gt;%
+  gather(key=year, value, -division, -variable) %&gt;%
+  spread(variable, value) %&gt;%
+  clean_names()</code></pre>
+<pre class="r"><code>head(unemp_lux)</code></pre>
 <pre><code>##   division year active_population of_which_non_wage_earners
 ## 1 Beaufort 2001               688                        85
 ## 2 Beaufort 2002               742                        85
@@ -116,6 +126,59 @@ head(unemp_lux)</code></pre>
 ## 4                         5.07
 ## 5                         5.89
 ## 6                         6.72</code></pre>
+<p>Once you have the unemployment data, install the next packages you’ll need to follow:</p>
+<pre class="r"><code>install.packages(
+  c(
+    &quot;maptools&quot;, # For gpclibPermit()
+    &quot;broom&quot;,    # For tidy()
+    &quot;ggplot2&quot;,  # To create a basic map
+    &quot;ggiraph&quot;,  # To create an interactive map
+    &quot;ggthemes&quot;, # To change the theme of the map
+    )</code></pre>
+<p>There’s a final package to install, but you have to get it from Github (and thus need <code>devtools</code>):</p>
+<pre class="r"><code>devtools::install_github(&quot;dgrtwo/gganimate&quot;)</code></pre>
+<p>To draw a map, you will need a so-called shapefile. These files contain the geometry of the countries, regions, etc so that it is possible to plot them. The shapefile can be obtained <a href="https://data.public.lu/en/datasets/limites-administratives-du-grand-duche-de-luxembourg/">here</a>.</p>
+<p>Download the zip, and look for the file called <code>LIMADM_COMMUNES.shp</code>, which contains the geometry of the Luxembourgish communes.</p>
+<pre class="r"><code>library(broom)
+library(dplyr)
+library(purrr)
+library(ggplot2)
+library(maptools)
+library(ggiraph)
+library(ggthemes)
+library(gganimate)</code></pre>
+<pre class="r"><code># communes &lt;- rgdal::readOGR(&quot;LIMADM_COMMUNES.shp&quot;)
+# 
+# communes_df &lt;- broom::tidy(communes, region = &quot;COMMUNE&quot;)
+# 
+# setdiff(unemp_lux$division, communes_df$id)
+# 
+# unemp_lux %&gt;%
+#   filter(!grepl(&quot;Canton&quot;, division), division != &quot;Grand Duchy of Luxembourg&quot;) %&gt;%
+#   select(commune = division, year, unemp_rate = unemployment_rate_in_percent)  -&gt; unemp_lux2
+# 
+# unemp_lux2$commune &lt;- gsub(&quot;Haute-Sûre&quot;, &quot;Haute Sûre&quot;, unemp_lux2$commune)
+# 
+# communes_df$id2 &lt;- gsub(&quot;Redange&quot;, &quot;Redange-sur-Attert&quot;, communes_df$id)
+# communes_df$group2 &lt;- gsub(&quot;Redange&quot;, &quot;Redange-sur-Attert&quot;, communes_df$group)
+# 
+# 
+# communes_df %&gt;%
+#   select(long, lat, commune = id2, group = group2) -&gt; communes_df2
+# 
+# 
+# setdiff(unemp_lux2$commune, communes_df2$commune)
+# 
+# final_data &lt;- left_join(communes_df2, unemp_lux2, by = &quot;commune&quot;)
+# 
+# final_data2001 &lt;- final_data %&gt;%
+#   filter(year == 2001)
+# 
+# ggplot_map &lt;- ggplot() +
+#   geom_polygon(data = final_data2001,
+#             aes(x = long, y = lat, group = commune, fill = unemp_rate))
+# 
+# print(ggplot_map)</code></pre>
 
          
       </div>
