@@ -144,11 +144,14 @@ library(dplyr)
 library(purrr)
 library(ggplot2)
 library(maptools)
+library(rgdal)
 library(ggiraph)
 library(ggthemes)
 library(gganimate)</code></pre>
-<pre class="r"><code># communes &lt;- rgdal::readOGR(&quot;LIMADM_COMMUNES.shp&quot;)
-# 
+<pre class="r"><code>getwd()</code></pre>
+<pre><code>## [1] &quot;/home/bro/Documents/rstats_lux/content/portfolio&quot;</code></pre>
+<pre class="r"><code>#communes &lt;- rgdal::readOGR(&quot;LIMADM_COMMUNES.shp&quot;)
+
 # communes_df &lt;- broom::tidy(communes, region = &quot;COMMUNE&quot;)
 # 
 # setdiff(unemp_lux$division, communes_df$id)

@@ -98,8 +98,8 @@ library(gganimate)
 
 ```{r}
 getwd()
-#communes <- rgdal::readOGR("LIMADM_COMMUNES.shp")
-
+communes <- rgdal::readOGR("/home/bro/Documents/rstats_lux/content/portfolio/LIMADM_COMMUNES.shp")
+head(communes)
 # communes_df <- broom::tidy(communes, region = "COMMUNE")
 # 
 # setdiff(unemp_lux$division, communes_df$id)
