@@ -127,7 +127,6 @@ unemp_lux &lt;- data_raw %&gt;%
     &quot;viridis&quot;,  # Optional, but better color scheme than the default 
     &quot;broom&quot;,    # For tidy()
     &quot;ggplot2&quot;,  # To create a basic map
-    &quot;ggiraph&quot;,  # To create an interactive map
     &quot;ggthemes&quot;, # To change the theme of the map
     )</code></pre>
 <p>There’s a final package to install, but you have to get it from Github (and thus need <code>devtools</code>):</p>
@@ -140,7 +139,6 @@ library(purrr)
 library(ggplot2)
 library(viridis)
 library(rgdal)
-library(ggiraph)
 library(ggthemes)
 library(gganimate)</code></pre>
 <p>Now we can read the data, and to some basic cleaning. Read the comments inside to code blocks to follow what’s going on:</p>
@@ -181,34 +179,58 @@ final_data &lt;- left_join(communes_df, unemp_lux, by = &quot;commune&quot;)
 
 # We are going to plot the map for the year 2015
 final_data2015 &lt;- final_data %&gt;%
-  filter(year == 2015)
-
-
-ggplot_map &lt;- ggplot() +
+  filter(year == 2015)</code></pre>
+<p>First, let’s plot ba basic map using <code>ggplot2</code>. Even if you’re not familiar with <code>ggplot2</code> the code below should be very straightforward:</p>
+<pre class="r"><code>ggplot_map &lt;- ggplot() +
   geom_polygon(data = final_data2015,
-               aes(x = long, y = lat, 
-                   group = commune, fill = unemp_rate)) +
-    labs(title = &quot;Unemployment rate in Luxembourg in 2015&quot;, y = &quot;&quot;, x = &quot;&quot;, fill = &quot;Unemployment rate&quot;) + 
-    theme(axis.text.x=element_blank(),
-          axis.ticks.x=element_blank()) + 
-    theme_tufte() + 
+               aes(x = long, y = lat, group = commune, fill = unemp_rate)) +
+    labs(title = &quot;Unemployment rate in Luxembourg in 2015&quot;, 
+         y = &quot;&quot;, x = &quot;&quot;, fill = &quot;Unemployment rate&quot;) + 
+    theme_tufte() +
+    theme(axis.text.x = element_blank(),
+          axis.ticks.x = element_blank(),
+          axis.text.y = element_blank(),
+          axis.ticks.y = element_blank()) + 
     scale_fill_viridis()
     
     
 # Finally, print the map
 print(ggplot_map)</code></pre>
-<p><img src="../../portfolio/2017-07-7-unemp_lux_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<p><img src="../../portfolio/2017-07-7-unemp_lux_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+<p>It is also possible to create a map per year using <code>facet_wrap()</code>:</p>
 <pre class="r"><code>facet_map &lt;- ggplot() +
   geom_polygon(data = final_data,
                aes(x = long, y = lat, 
                    group = commune, fill = unemp_rate)) +
     labs(title = &quot;Unemployment rate in Luxembourg&quot;, y = &quot;&quot;, x = &quot;&quot;, fill = &quot;Unemployment rate&quot;) + 
     theme_tufte() + 
+    theme(axis.text.x = element_blank(),
+          axis.ticks.x = element_blank(),
+          axis.text.y = element_blank(),
+          axis.ticks.y = element_blank()) + 
     facet_wrap(~year) +
     scale_fill_viridis()
 
 print(facet_map)</code></pre>
-<p><img src="../../portfolio/2017-07-7-unemp_lux_files/figure-html/unnamed-chunk-8-2.png" width="672" /></p>
+<p><img src="../../portfolio/2017-07-7-unemp_lux_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
+<p>We clearly see that unemployment has risen in Luxembourg these past 15 years. This series of maps are great for print, but since you’re reading this on a screen, why not try to animate these maps? This is possible with <code>gganimate</code>:</p>
+<pre class="r"><code>library(gganimate)
+
+map_anim &lt;- ggplot() +
+    geom_polygon(data = final_data, 
+                 aes(x = long, y = lat, group = group, fill = unemp_rate, frame = year)) +
+    labs(title = &quot;Unemployment rate in Luxembourg&quot;, y = &quot;&quot;, x = &quot;&quot;, fill = &quot;Unemployment rate&quot;) + 
+    theme_tufte() + 
+    theme(axis.text.x = element_blank(),
+          axis.ticks.x = element_blank(),
+          axis.text.y = element_blank(),
+          axis.ticks.y = element_blank()) + 
+    scale_fill_viridis()
+
+
+gganimate(map_anim, &quot;map_lux.mp4&quot;, interval = 2)</code></pre>
+<p>You can create an <code>.mp4</code> video as well as a <code>.gif</code>. Just change the extension inside the <code>gganimate()</code> function. <img src="../../img/map_lux.gif" /></p>
+<p>That’s it for now. In the next post, I will show you how to create interactive maps using R and javascript!</p>
 
          
       </div>
