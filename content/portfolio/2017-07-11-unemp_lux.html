@@ -64,10 +64,12 @@ unemp_lux &lt;- data_raw %&gt;%
     &quot;broom&quot;,    # For tidy()
     &quot;ggplot2&quot;,  # To create a basic map
     &quot;ggthemes&quot;, # To change the theme of the map
+    &quot;rgdal&quot;     # To read in the shapefile
     )</code></pre>
+<p><code>rgdal</code> might be tricky to install on macOS and Linux. If you’re using Ubuntu, you have to install <code>libgdal-dev</code>, and on macOS you’ll need to install <code>gdal</code> using Homebrew.</p>
 <p>There’s a final package to install, but you have to get it from Github (and thus need <code>devtools</code>):</p>
 <pre class="r"><code>devtools::install_github(&quot;dgrtwo/gganimate&quot;)</code></pre>
-<p>To draw a map, you will need a so-called shapefile. These files contain the geometry of the countries, regions, etc so that it is possible to plot them. The shapefile can be obtained <a href="https://data.public.lu/en/datasets/limites-administratives-du-grand-duche-de-luxembourg/">here</a>.</p>
+<p>To draw a map, you will need a so-called shapefile. These files contain the geometry of the countries, regions, etc so that it is possible to plot them. The shapefile can be obtained from <a href="https://data.public.lu/en/datasets/limites-administratives-du-grand-duche-de-luxembourg/">Luxembourg’s Open data Portal</a>.</p>
 <p>Download the zip, and look for the file called <code>LIMADM_COMMUNES.shp</code>, which contains the geometry of the Luxembourgish communes. Leave it inside the folder <code>Limadmin_SHP</code>, as it contains other files needed by <code>rgdal::readOGR()</code> to read in the shapefile.</p>
 <pre class="r"><code>library(broom)
 library(dplyr)
@@ -77,44 +79,32 @@ library(viridis)
 library(rgdal)
 library(ggthemes)
 library(gganimate)</code></pre>
-<p>Now we can read the data, and to some basic cleaning. Read the comments inside to code blocks to follow what’s going on:</p>
-<pre class="r"><code># Read the shapefile.
-communes &lt;- rgdal::readOGR(&quot;Limadmin_SHP/LIMADM_COMMUNES.shp&quot;)</code></pre>
+<p>Now we can read the data, and to some basic cleaning. I comment every step, but run the code line by line to really understand what’s going on!</p>
+<p>Read the shapefile:</p>
+<pre class="r"><code>communes &lt;- rgdal::readOGR(&quot;Limadmin_SHP/LIMADM_COMMUNES.shp&quot;)</code></pre>
 <pre><code>## OGR data source with driver: ESRI Shapefile 
 ## Source: &quot;Limadmin_SHP/LIMADM_COMMUNES.shp&quot;, layer: &quot;LIMADM_COMMUNES&quot;
 ## with 105 features
 ## It has 4 fields</code></pre>
 <pre><code>## Warning in rgdal::readOGR(&quot;Limadmin_SHP/LIMADM_COMMUNES.shp&quot;): Z-dimension
 ## discarded</code></pre>
-<pre class="r"><code># &quot;Convert&quot; it to a data frame using broom::tidy(). In the past, this was made with ggplot2::fortify().
-communes_df &lt;- broom::tidy(communes, region = &quot;COMMUNE&quot;)
-
-# Remove the Cantons from the data, as well as the unemployment rate for the whole country.
-# Then only select the relevant columns and rename them in one go.
-unemp_lux &lt;- unemp_lux %&gt;%
+<p>“Convert” it to a data frame using broom::tidy(). In the past, this was made with <code>ggplot2::fortify()</code>:</p>
+<pre class="r"><code>communes_df &lt;- broom::tidy(communes, region = &quot;COMMUNE&quot;)</code></pre>
+<p>Remove the Cantons from the data, as well as the unemployment rate for the whole country. Then only select the relevant columns and rename them in one go:</p>
+<pre class="r"><code>unemp_lux &lt;- unemp_lux %&gt;%
   filter(!grepl(&quot;Canton&quot;, division), division != &quot;Grand Duchy of Luxembourg&quot;) %&gt;%
-  select(commune = division, year, unemp_rate = unemployment_rate_in_percent)
-
-# The name of two communes are written differently in the shapefile than in the data. 
-# We can change that using gsub.
-
-# Change &quot;Haute-Sûre&quot; to &quot;Haute Sûre&quot; in the unemployment data
-unemp_lux$commune &lt;- gsub(&quot;Haute-Sûre&quot;, &quot;Haute Sûre&quot;, unemp_lux$commune)
-
-# Change &quot;Redange&quot; to &quot;Redange-sur-Attert&quot; in the data frame containing the geometry of the communes
-communes_df$id &lt;- gsub(&quot;Redange&quot;, &quot;Redange-sur-Attert&quot;, communes_df$id)
-#communes_df$group &lt;- gsub(&quot;Redange&quot;, &quot;Redange-sur-Attert&quot;, communes_df$group)
-
-# Select relevant columns from the communes data frame, and rename them
-communes_df &lt;- communes_df %&gt;%
-    select(long, lat, commune = id, group) 
-
-# Finally, join the communes data frame (containing the geometry) with the unemployment data, by
-# communes
-final_data &lt;- left_join(communes_df, unemp_lux, by = &quot;commune&quot;)
-
-# We are going to plot the map for the year 2015
-final_data2015 &lt;- final_data %&gt;%
+  select(commune = division, year, unemp_rate = unemployment_rate_in_percent)</code></pre>
+<p>The name of two communes are written differently in the shapefile than in the data. We can change that using gsub. Change “Haute-Sûre” to “Haute Sûre” in the unemployment data:</p>
+<pre class="r"><code>unemp_lux$commune &lt;- gsub(&quot;Haute-Sûre&quot;, &quot;Haute Sûre&quot;, unemp_lux$commune)</code></pre>
+<p>Change “Redange” to “Redange-sur-Attert” in the data frame containing the geometry of the communes</p>
+<pre class="r"><code>communes_df$id &lt;- gsub(&quot;Redange&quot;, &quot;Redange-sur-Attert&quot;, communes_df$id)</code></pre>
+<p>Select relevant columns from the communes data frame, and rename them</p>
+<pre class="r"><code>communes_df &lt;- communes_df %&gt;%
+    select(long, lat, commune = id, group) </code></pre>
+<p>Finally, join the communes data frame (containing the geometry) with the unemployment data, by communes:</p>
+<pre class="r"><code>final_data &lt;- left_join(communes_df, unemp_lux, by = &quot;commune&quot;)</code></pre>
+<p>Let’s plot the unemployment rate for the latest available year:</p>
+<pre class="r"><code>final_data2015 &lt;- final_data %&gt;%
   filter(year == 2015)</code></pre>
 <p>First, let’s plot ba basic map using <code>ggplot2</code>. Even if you’re not familiar with <code>ggplot2</code> the code below should be very straightforward:</p>
 <pre class="r"><code>ggplot_map &lt;- ggplot() +
@@ -127,12 +117,10 @@ final_data2015 &lt;- final_data %&gt;%
           axis.ticks.x = element_blank(),
           axis.text.y = element_blank(),
           axis.ticks.y = element_blank()) + 
-    scale_fill_viridis()
-    
-    
-# Finally, print the map
-print(ggplot_map)</code></pre>
-<p><img src="/portfolio/2017-07-11-unemp_lux_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+    scale_fill_viridis()</code></pre>
+<p>Finally, print the map:</p>
+<pre class="r"><code>print(ggplot_map)</code></pre>
+<p><img src="/portfolio/2017-07-11-unemp_lux_files/figure-html/unnamed-chunk-17-1.png" width="672" /></p>
 <p>It is also possible to create a map per year using <code>facet_wrap()</code>:</p>
 <pre class="r"><code>facet_map &lt;- ggplot() +
   geom_polygon(data = final_data,
@@ -148,8 +136,8 @@ print(ggplot_map)</code></pre>
     scale_fill_viridis()
 
 print(facet_map)</code></pre>
-<p><img src="/portfolio/2017-07-11-unemp_lux_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
-<p>We clearly see that unemployment has risen in Luxembourg these past 15 years. This series of maps are great for print, but since you’re reading this on a screen, why not try to animate these maps? This is possible with <code>gganimate</code>:</p>
+<p><img src="/portfolio/2017-07-11-unemp_lux_files/figure-html/unnamed-chunk-18-1.png" width="672" /></p>
+<p>We clearly see that unemployment has risen in Luxembourg these past 15 years. This series of maps are great for printing, but since you’re reading this on a screen, why not try to animate these maps? This is possible with <code>gganimate</code>:</p>
 <pre class="r"><code>library(gganimate)
 
 map_anim &lt;- ggplot() +
