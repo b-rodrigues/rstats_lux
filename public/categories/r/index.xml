@@ -6,17 +6,17 @@
     <description>Recent content in R on Rdata Luxembourg</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 07 Jul 2017 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 11 Jul 2017 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/categories/r/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Mapping unemployment in Luxembourg</title>
-      <link>/portfolio/2017-07-7-unemp_lux/</link>
-      <pubDate>Fri, 07 Jul 2017 00:00:00 +0000</pubDate>
+      <link>/portfolio/2017-07-11-unemp_lux/</link>
+      <pubDate>Tue, 11 Jul 2017 00:00:00 +0000</pubDate>
       
-      <guid>/portfolio/2017-07-7-unemp_lux/</guid>
+      <guid>/portfolio/2017-07-11-unemp_lux/</guid>
       <description>In this blog post, I show various ways to create maps using R. You’ll need to install a lot of packages and download two data sets; the unemployment rate in Luxembourg as well as a shapefile.
 To get the unemployment rate in Luxembourg, you can take a look at our previous blog post and simply run the following lines:
 library(rvest) library(dplyr) library(purrr) library(janitor) library(tidyr) page_unemp &amp;lt;- read_html(&amp;quot;http://www.statistiques.public.lu/stat/TableViewer/tableViewHTML.aspx?ReportId=12950&amp;amp;IF_Language=eng&amp;amp;MainTheme=2&amp;amp;FldrName=3&amp;amp;RFPath=91&amp;quot;) data_raw &amp;lt;- page_unemp %&amp;gt;% html_nodes(&amp;quot;.</description>
