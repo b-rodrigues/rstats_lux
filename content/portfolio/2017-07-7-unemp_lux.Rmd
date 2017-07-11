@@ -54,7 +54,7 @@ Once you have the unemployment data, install the next packages you'll need to fo
 ```{r, eval=FALSE}
 install.packages(
   c(
-    "maptools", # For gpclibPermit()
+    "viridis",  # Optional, but better color scheme than the default 
     "broom",    # For tidy()
     "ggplot2",  # To create a basic map
     "ggiraph",  # To create an interactive map
@@ -71,14 +71,15 @@ devtools::install_github("dgrtwo/gganimate")
 To draw a map, you will need a so-called shapefile. These files contain the geometry of the countries, regions, etc so that
 it is possible to plot them. The shapefile can be obtained [here](https://data.public.lu/en/datasets/limites-administratives-du-grand-duche-de-luxembourg/).
 
-Download the zip, and look for the file called `LIMADM_COMMUNES.shp`, which contains the geometry of the Luxembourgish communes.
+Download the zip, and look for the file called `LIMADM_COMMUNES.shp`, which contains the geometry of the Luxembourgish communes. Leave it inside the folder `Limadmin_SHP`, as it contains other files needed
+by `rgdal::readOGR()` to read in the shapefile.
 
 ```{r, include=FALSE}
 library(broom)
 library(dplyr)
 library(purrr)
 library(ggplot2)
-library(maptools)
+library(viridis)
 library(ggiraph)
 library(ggthemes)
 library(gganimate)
@@ -89,45 +90,74 @@ library(broom)
 library(dplyr)
 library(purrr)
 library(ggplot2)
-library(maptools)
+library(viridis)
 library(rgdal)
 library(ggiraph)
 library(ggthemes)
 library(gganimate)
 ```
 
+Now we can read the data, and to some basic cleaning. Read the comments inside to code blocks to
+follow what's going on:
+
 ```{r}
-getwd()
-communes <- rgdal::readOGR("/home/bro/Documents/rstats_lux/content/portfolio/LIMADM_COMMUNES.shp")
-head(communes)
-# communes_df <- broom::tidy(communes, region = "COMMUNE")
-# 
-# setdiff(unemp_lux$division, communes_df$id)
-# 
-# unemp_lux %>%
-#   filter(!grepl("Canton", division), division != "Grand Duchy of Luxembourg") %>%
-#   select(commune = division, year, unemp_rate = unemployment_rate_in_percent)  -> unemp_lux2
-# 
-# unemp_lux2$commune <- gsub("Haute-Sûre", "Haute Sûre", unemp_lux2$commune)
-# 
-# communes_df$id2 <- gsub("Redange", "Redange-sur-Attert", communes_df$id)
-# communes_df$group2 <- gsub("Redange", "Redange-sur-Attert", communes_df$group)
-# 
-# 
-# communes_df %>%
-#   select(long, lat, commune = id2, group = group2) -> communes_df2
-# 
-# 
-# setdiff(unemp_lux2$commune, communes_df2$commune)
-# 
-# final_data <- left_join(communes_df2, unemp_lux2, by = "commune")
-# 
-# final_data2001 <- final_data %>%
-#   filter(year == 2001)
-# 
-# ggplot_map <- ggplot() +
-#   geom_polygon(data = final_data2001,
-#             aes(x = long, y = lat, group = commune, fill = unemp_rate))
-# 
-# print(ggplot_map)
+# Read the shapefile.
+communes <- rgdal::readOGR("Limadmin_SHP/LIMADM_COMMUNES.shp")
+
+# "Convert" it to a data frame using broom::tidy(). In the past, this was made with ggplot2::fortify().
+communes_df <- broom::tidy(communes, region = "COMMUNE")
+
+# Remove the Cantons from the data, as well as the unemployment rate for the whole country.
+# Then only select the relevant columns and rename them in one go.
+unemp_lux <- unemp_lux %>%
+  filter(!grepl("Canton", division), division != "Grand Duchy of Luxembourg") %>%
+  select(commune = division, year, unemp_rate = unemployment_rate_in_percent)
+
+# The name of two communes are written differently in the shapefile than in the data. 
+# We can change that using gsub.
+
+# Change "Haute-Sûre" to "Haute Sûre" in the unemployment data
+unemp_lux$commune <- gsub("Haute-Sûre", "Haute Sûre", unemp_lux$commune)
+
+# Change "Redange" to "Redange-sur-Attert" in the data frame containing the geometry of the communes
+communes_df$id <- gsub("Redange", "Redange-sur-Attert", communes_df$id)
+#communes_df$group <- gsub("Redange", "Redange-sur-Attert", communes_df$group)
+
+# Select relevant columns from the communes data frame, and rename them
+communes_df <- communes_df %>%
+    select(long, lat, commune = id, group) 
+
+# Finally, join the communes data frame (containing the geometry) with the unemployment data, by
+# communes
+final_data <- left_join(communes_df, unemp_lux, by = "commune")
+
+# We are going to plot the map for the year 2015
+final_data2015 <- final_data %>%
+  filter(year == 2015)
+
+
+ggplot_map <- ggplot() +
+  geom_polygon(data = final_data2015,
+               aes(x = long, y = lat, 
+                   group = commune, fill = unemp_rate)) +
+    labs(title = "Unemployment rate in Luxembourg in 2015", y = "", x = "", fill = "Unemployment rate") + 
+    theme(axis.text.x = element_blank(),
+          axis.ticks.x = element_blank()) + 
+    theme_tufte() + 
+    scale_fill_viridis()
+    
+    
+# Finally, print the map
+print(ggplot_map)
+
+facet_map <- ggplot() +
+  geom_polygon(data = final_data,
+               aes(x = long, y = lat, 
+                   group = commune, fill = unemp_rate)) +
+    labs(title = "Unemployment rate in Luxembourg", y = "", x = "", fill = "Unemployment rate") + 
+    theme_tufte() + 
+    facet_wrap(~year) +
+    scale_fill_viridis()
+
+print(facet_map)
 ```
