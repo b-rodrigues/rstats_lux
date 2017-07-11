@@ -13,7 +13,7 @@ In this blog post, I show various ways to create maps using R. You'll need to in
 packages and download two data sets; the unemployment rate in Luxembourg as well as a shapefile.
 
 To get the unemployment rate in Luxembourg, you can take a look at our [previous blog post](http://rdata.lu/portfolio/2017-04-21-scraping-data-from-statec-s-public-tables/)
-and simply run the following lines:
+or simply run the following lines:
 
 ```{r, eval=FALSE}
 library(rvest)
@@ -41,6 +41,9 @@ unemp_lux <- data_raw %>%
   clean_names()
 ```
 
+These lines scrape the data off STATEC's (the national institute of statistics) public tables and 
+puts the raw data into a tidy data frame. Let's take a look:
+
 ```{r, include = FALSE}
 unemp_lux <- read.csv("unemployment_lux.csv", header = TRUE)
 ```
@@ -49,7 +52,7 @@ unemp_lux <- read.csv("unemployment_lux.csv", header = TRUE)
 head(unemp_lux)
 ```
 
-Once you have the unemployment data, install the next packages you'll need to follow:
+Once you have the unemployment data, install the next packages you'll need to follow the rest of the post:
 
 ```{r, eval=FALSE}
 install.packages(
@@ -72,7 +75,7 @@ devtools::install_github("dgrtwo/gganimate")
 ```
 
 To draw a map, you will need a so-called shapefile. These files contain the geometry of the countries, regions, etc so that
-it is possible to plot them. The shapefile can be obtained from 
+it is possible to plot them. The shapefile for Luxembourg can be obtained from 
 [Luxembourg's Open data Portal](https://data.public.lu/en/datasets/limites-administratives-du-grand-duche-de-luxembourg/).
 
 Download the zip, and look for the file called `LIMADM_COMMUNES.shp`, which contains the geometry of the Luxembourgish communes. Leave it inside the folder `Limadmin_SHP`, as it contains other files needed
@@ -84,6 +87,7 @@ library(dplyr)
 library(purrr)
 library(ggplot2)
 library(viridis)
+library(rgdal)
 library(ggthemes)
 library(gganimate)
 ```
@@ -99,21 +103,25 @@ library(ggthemes)
 library(gganimate)
 ```
 
-Now we can read the data, and to some basic cleaning. I comment every step, but run the code line
+Now we can read the data, and do some basic cleaning. I comment every step, but run the code line
 by line to really understand what's going on!
 
 Read the shapefile:
+
 ```{r}
-communes <- rgdal::readOGR("Limadmin_SHP/LIMADM_COMMUNES.shp")
+communes <- readOGR("Limadmin_SHP/LIMADM_COMMUNES.shp")
 ```
+
 "Convert" it to a data frame using broom::tidy(). In the past, this was made with `ggplot2::fortify()`:
 
 
 ```{r}
 communes_df <- broom::tidy(communes, region = "COMMUNE")
 ```
-Remove the Cantons from the data, as well as the unemployment rate for the whole country.
+
+Remove the *cantons* from the data, as well as the unemployment rate for the whole country.
 Then only select the relevant columns and rename them in one go:
+
 ```{r}
 unemp_lux <- unemp_lux %>%
   filter(!grepl("Canton", division), division != "Grand Duchy of Luxembourg") %>%
@@ -121,22 +129,23 @@ unemp_lux <- unemp_lux %>%
 ```
 
 The name of two communes are written differently in the shapefile than in the data. We can change 
-that using gsub. Change "Haute-Sûre" to "Haute Sûre" in the unemployment data:
+that using `gsub()`. Change "Haute-Sûre" to "Haute Sûre" in the unemployment data:
 
 ```{r}
 unemp_lux$commune <- gsub("Haute-Sûre", "Haute Sûre", unemp_lux$commune)
 ```
 
-Change "Redange" to "Redange-sur-Attert" in the data frame containing the geometry of the communes
+Change "Redange" to "Redange-sur-Attert" in the data frame containing the geometry of the communes:
 
 ```{r}
 communes_df$id <- gsub("Redange", "Redange-sur-Attert", communes_df$id)
 ```
-Select relevant columns from the communes data frame, and rename them
+
+Select relevant columns from the communes data frame, and rename them:
 
 ```{r}
 communes_df <- communes_df %>%
-    select(long, lat, commune = id, group) 
+    select(long, lat, commune = id) 
 ```
 
 Finally, join the communes data frame (containing the geometry) with the unemployment data, by communes:
@@ -152,7 +161,7 @@ final_data2015 <- final_data %>%
   filter(year == 2015)
 ```
 
-First, let's plot ba basic map using `ggplot2`. Even if you're not familiar with `ggplot2` the 
+First, let's plot a basic map using `ggplot2`. Even if you're not familiar with `ggplot2` the 
 code below should be very straightforward:
 
 ```{r}
@@ -195,7 +204,7 @@ print(facet_map)
 
 We clearly see that unemployment has risen in Luxembourg these past 15 years. This series of maps
 are great for printing, but since you're reading this on a screen, why not try to animate these maps?
-This is possible with `gganimate`:
+This is possible with `gganimate()`:
 
 ```{r, eval=FALSE}
 library(gganimate)
