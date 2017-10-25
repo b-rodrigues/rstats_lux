@@ -1,176 +1,103 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Rstats Luxembourg</title>
-    <link>/index.xml</link>
-    <description>Recent content on Rstats Luxembourg</description>
+    <title>rData.lu - Specialized in data science training and expertise</title>
+    <link>/</link>
+    <description>Recent content on rData.lu - Specialized in data science training and expertise</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 10 Apr 2017 21:13:14 -0500</lastBuildDate>
-    <atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+    <copyright>Copyright (c) rData.lu. All rights reserved. &lt;br&gt; Content reblogged by &lt;a href=&#39;https://www.r-bloggers.com/&#39; target=&#39;_blank&#39;&gt;R-bloggers&lt;/a&gt;</copyright>
+    <lastBuildDate>Sat, 21 Oct 2017 06:34:55 +0200</lastBuildDate>
+    
+	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+    
     
     <item>
-      <title>Launch shiny from a shortcut</title>
-      <link>/portfolio/2017-04-10-launch-a-shiny-app-from-a-shortcut/</link>
-      <pubDate>Mon, 10 Apr 2017 21:13:14 -0500</pubDate>
+      <title>Scraping data from the local elections</title>
+      <link>/post/2017-10-21-scraping-data-from-the-local-elections/</link>
+      <pubDate>Sat, 21 Oct 2017 06:34:55 +0200</pubDate>
       
-      <guid>/portfolio/2017-04-10-launch-a-shiny-app-from-a-shortcut/</guid>
-      <description>&lt;p&gt;Hello,&lt;/p&gt;
-
-&lt;p&gt;In this post I will explain how to launch a shiny application from a shortcut. just like that:
-&lt;video controls=&#34;&#34; height=&#34;400&#34; width=&#34;640&#34;&gt;
-  &lt;source src=&#34;./img/launch_icon.mp4&#34; type=&#34;video/mp4&#34;/&gt;
-&lt;/video&gt;&lt;/p&gt;
-
-&lt;p&gt;It&amp;rsquo;s short and usefull if you work with colleagues that don&amp;rsquo;t know a clue about R and just want to use your shiny app. &lt;del&gt;I suggest you to follow this guide. Your colleagues will double click on the shortcut and directly be in front of their application.&lt;/del&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;h4&gt;If you are on MAC:&lt;/h4&gt;
-Open a text editor and write the following lines :&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt; Rscript &#39;&amp;amp;FullPath/&amp;amp;file.R&#39; &amp;amp;
- open http://127.0.0.1:&amp;amp;PortNumber/;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;strong&gt;&amp;amp;&lt;/strong&gt; allows you to write more command lines even if the shell is still busy with the previous line. The second line open your web browser with the chosen address. A concrete example gives that:
-&lt;img src=&#34;./img/launch_code.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;On the second line, &lt;strong&gt;7990&lt;/strong&gt; refers to the choosen port in your shiny app. If you haven&amp;rsquo;t choosen one, go back to the file where you have wrote the application and add to shinyApp: &lt;strong&gt;options = list(port= 7990)&lt;/strong&gt;, just like that:&lt;br&gt;
-&lt;strong&gt;shinyApp(ui=ui,server=server, options = list(port=7990))&lt;/strong&gt;&lt;br&gt;&lt;/p&gt;
-
-&lt;p&gt;if you use a &lt;strong&gt;.Rmd&lt;/strong&gt; document, you should write this:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt; Rscript -e  &amp;quot;rmarkdown::run(&#39;&amp;amp;FullPath/&amp;amp;file.Rmd&#39;, shiny_args = list(port=&amp;amp;PortNumber))&amp;quot; &amp;amp;
- open http://127.0.0.1:&amp;amp;PortNumber/&amp;amp;file.Rmd;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Replace &amp;amp;FullPath, &amp;amp;file and &amp;amp;PortNumber by the file path, the file name and the chosen port. &lt;br&gt; &lt;br&gt;
-Then save it with the  &lt;strong&gt;&amp;rdquo;.command&amp;rdquo;&lt;/strong&gt; extension and try to launch your shiny application from the shortcut. if you have a message saying that the file could not be executed because you do not have appropriate access privileges, open your terminal and write the following line:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;chmod u+x &amp;amp;FullPath/&amp;amp;file.command
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Then it should work :) &lt;br&gt;
-We are almost done, now we have to add another shortcut icon to make it look more &lt;del&gt;user&lt;/del&gt; friendly. For that, go on google and download free &lt;strong&gt;.icns&lt;/strong&gt; icons. I have download some icons on &lt;a href=&#34;http://www.easyicon.net/&#34;&gt;easyicon&lt;/a&gt;.
-To change the icon you just need to go in &amp;ldquo;get info&amp;rdquo; and drag your new icon to the previous one, just like bellow:&lt;br&gt;
-&lt;video controls=&#34;&#34; height=&#34;400&#34; width=&#34;640&#34;&gt;
-  &lt;source src=&#34;./img/change_icon.mp4&#34; type=&#34;video/mp4&#34; /&gt;
-&lt;/video&gt;
-&lt;br&gt;&lt;br&gt;
-&lt;h4&gt;If you are on Windows:&lt;/h4&gt;
-Open a text editor and write the following lines:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;start &amp;quot;&amp;quot; &amp;quot;&amp;amp;FullPath1\Rscript.exe&amp;quot; &amp;amp;FullPath2\&amp;amp;file.R  /k
-start &amp;quot;Name&amp;quot; &amp;quot;http://127.0.0.1:&amp;amp;PortNumber/&amp;quot;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;strong&gt;/k&lt;/strong&gt; allows you to write something in the command prompt even if the Prompt is busy with the previous line. A concrete example gives that :
-&lt;img src=&#34;./img/mlaunch_code.png&#34;  /&gt;&lt;/p&gt;
-
-&lt;p&gt;Then you can save your file with a &lt;strong&gt;.bat&lt;/strong&gt; extension. &lt;br&gt;
-Be carefull, if you want to launch a &lt;strong&gt;.Rmd&lt;/strong&gt; you should use this code instead :&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;start &amp;quot;&amp;amp;FullPath1\R.exe&amp;quot; -e &amp;quot;Sys.setenv(RSTUDIO_PANDOC=&#39;C:/Program Files/RStudio/bin/pandoc&#39;); rmarkdown::run(&#39;&amp;amp;FullPath2/&amp;amp;file.Rmd&#39;, shiny_args = list(port =&amp;amp;PortNumber, launch.browser = FALSE))&amp;quot; /k
-start &amp;quot;&amp;amp;file&amp;quot; &amp;quot;http://127.0.0.1:7924/&amp;amp;file.Rmd&amp;quot;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;if it doesn&amp;rsquo;t work, check your pandoc location.&lt;/p&gt;
-
-&lt;p&gt;It&amp;rsquo;s almost done. Now we have to change the icon. first you have to download an icon with the .ico extension. then you have to act in 4 steps : &lt;/br&gt;
-1. Right click on your file and go in &lt;strong&gt;Properties&lt;/strong&gt;. &lt;/br&gt;
-2. Choose the &lt;strong&gt;Shortcut&lt;/strong&gt; tab. &lt;/br&gt;
-3. Then go in &lt;strong&gt;Change Icon&amp;hellip;&lt;/strong&gt;. &lt;/br&gt;
-4. In Browse, select the icon you want to see instead. &lt;/br&gt;
-&lt;img src=&#34;./img/micon_change.png&#34; style = &#34;max-width:640px;&#34;&gt;&lt;/p&gt;
-
-&lt;p&gt;And now it&amp;rsquo;s done! &lt;br&gt;&lt;br&gt;&lt;br&gt;
-Don&amp;rsquo;t hesitate to contact me if you have any comments or suggestions.&lt;/p&gt;
-</description>
+      <guid>/post/2017-10-21-scraping-data-from-the-local-elections/</guid>
+      <description>One of my journalist friend was looking at the result of the local election in Luxembourg and he was dissatisfied because he was unable to compare the results of all the communes. In fact, he wanted to compare the number of women that were candidates in each commune. So I asked him to hold on and I came back one hour later with this script that enables him to collect results of all communes in one table.</description>
     </item>
     
     <item>
-      <title>R and d3js, how to make them communicate</title>
-      <link>/portfolio/d3jsandR_communication/</link>
-      <pubDate>Thu, 23 Jul 2015 21:13:14 -0500</pubDate>
+      <title>Let&#39;s make ggplot2 purrr again</title>
+      <link>/post/2017-10-09-make-ggplot2-purrr-again/</link>
+      <pubDate>Mon, 09 Oct 2017 06:45:48 +0200</pubDate>
       
-      <guid>/portfolio/d3jsandR_communication/</guid>
-      <description>&lt;!-- BLOGDOWN-BODY-BEFORE
-
-/BLOGDOWN-BODY-BEFORE --&gt;
-
-&lt;p&gt;Hello,&lt;/p&gt;
-&lt;p&gt;In this post we will focus ourself on how to integrate a message from R to javascript. More precisely, we will focus on the basic key words and knowledge to integrate a d3.js graphic into shiny, just like &lt;a href=&#34;http://51.254.215.145:3838/shiny-fret/&#34;&gt;here&lt;/a&gt;. &lt;del&gt;If you have no clue about what shiny is. I suggest you to see some of my apps here and if you want to learn more, check this &lt;a href=&#34;https://shiny.rstudio.com/tutorial/lesson1/&#34;&gt;tutorial&lt;/a&gt;.&lt;/del&gt; &lt;del&gt;To write this post I inspire myself of &lt;a href=&#34;https://myinspirationinformation.com/visualisation/d3-js/integrating-d3-js-into-r-shiny&#34;&gt;James Thomson ’s blog&lt;/a&gt; and a &lt;a href=&#34;http://shiny.rstudio.com/gallery/server-to-client-custom-messages.html&#34;&gt;shiny app&lt;/a&gt; from Rstudio.&lt;/del&gt; If you have any issue to make shiny and javascript communicate after reading this post, I suggest you to go back to this simple &lt;a href=&#34;http://shiny.rstudio.com/gallery/server-to-client-custom-messages.html&#34;&gt;shiny app&lt;/a&gt; from Rstudio.&lt;br&gt;&lt;br&gt; First of all, you will create a folder where you will put your data file (.csv, .txt, etc..) and your app.R (or ui.R and server.R). In this folder, you will create a new folder that you will name “www”. You will put your .css and .js file inside “www”. &lt;br&gt;&lt;br&gt; &lt;img src=&#34;./Users/user/Desktop/Clef_USB/data_science/hugo/static/img/portfolio/folder_www.png&#34; alt=&#34;&#34; /&gt;&lt;br&gt;&lt;/p&gt;
-&lt;p&gt;To make R and d3.js communicate, you will have to put some key words in the server part, the ui part and the .js file.&lt;br&gt;&lt;br&gt; &lt;strong&gt;in server.R&lt;/strong&gt;, put your data that you want to send to javascript in an &lt;strong&gt;observe({ })&lt;/strong&gt; function. Just like bellow:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;function(input, output, session) {
-    observe({
-        dataSendToJs = &amp;quot;Hello World&amp;quot;
-        session$sendCustomMessage(type = &amp;#39;nameOfTheMessage&amp;#39;,dataSendToJs)
-    })
-}&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;strong&gt;session$sendCustomMessage( )&lt;/strong&gt; allows you to send your data from shiny to javascript. &lt;br&gt;&lt;br&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;in ui.R&lt;/strong&gt;, source the javascript document via a tag function.&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;fluidPage(
-  titlePanel(&amp;quot;Example&amp;quot;),
-  fluidRow(
-  #Shiny way to integrate html code in the web page
-  tags$head(tags$script(src = &amp;quot;message.js&amp;quot;))
-  )
-)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;br&gt; &lt;strong&gt;in .js&lt;/strong&gt;, code has to begin with &lt;strong&gt;“Shiny.addCustomMessageHandler(”nameOfTheMessage“, function(message) {”&lt;/strong&gt; like the following example. Don’t forget message represents data from R that javascript will read so it’s better to transform them to json data. You can do it in R via the function &lt;code&gt;jsonlite::toJSON()&lt;/code&gt;.&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;Shiny.addCustomMessageHandler(&amp;quot;nameOfTheMessage&amp;quot;,
-                                      function(message) {
-                                              alert(JSON.stringify(message));
-                                      });&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Now it should work! You can find the whole process in this repository. We have begin with something simple but you can do more complex thing with same logic.&lt;/p&gt;
-&lt;p&gt;Be carefull, if you’re working locally, you have to make some modification: First, you need to have a webserver. I use &lt;a href=&#34;https://chrome.google.com/webstore/detail/web-server-for-chrome/ofhbbkphhbklhfoeikjpcbhemlocgigb?hl=en&#34;&gt;web server for chrome&lt;/a&gt;. If you choose to use the same web server, it’s very simple. &lt;br&gt; First, in “CHOOSE FOLDER”, ou have to choose the “www” folder that you have made previously, then a web server url will appear. Click on it, then a new web page with the different files from “www” should pop-up.&lt;br&gt;&lt;br&gt; &lt;img src=&#34;./Users/user/Desktop/Clef_USB/data_science/hugo/static/img/portfolio/webserver_source.png&#34; style = &#34;max-width:640px;&#34;&gt; &lt;br&gt;&lt;br&gt; In ui.R (or the ui part of your single-file shiny app), source d3.min.js and all “.css” and “.js” files as follow:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;#http://127.0.0.1:8887 represents the web server URL
-tags$head(tags$script(src = &amp;quot;http://127.0.0.1:8887/d3.min.js&amp;quot;))&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Now it should work :) &lt;br&gt;&lt;br&gt; You can see a complete and reproductable example in &lt;a href=&#34;https://github.com/woozaa/fret_Lux&#34;&gt;GitHub&lt;/a&gt;.&lt;br&gt; Don’t hesitate to contact me if you have any comments or suggestions.&lt;/p&gt;
-
-
-&lt;!-- BLOGDOWN-HEAD
-
-
-
-
-/BLOGDOWN-HEAD --&gt;
-</description>
+      <guid>/post/2017-10-09-make-ggplot2-purrr-again/</guid>
+      <description>Update: I’ve included another way of saving a separate plot by group in this article, as pointed out by @monitus. Actually, this is the preferred solution; using dplyr::do() is deprecated, according to Hadley Wickham himself.
+I’ll be honest: the title is a bit misleading. I will not use purrr that much in this blog post. Actually, I will use one single purrr function, at the very end. I use dplyr much more.</description>
     </item>
     
     <item>
-      <title>Who are we?</title>
-      <link>/about/</link>
-      <pubDate>Mon, 20 Mar 2017 21:05:33 +0530</pubDate>
+      <title>Communication between R and d3js</title>
+      <link>/post/2017-09-16-communication-between-r-and-d3js/</link>
+      <pubDate>Sat, 16 Sep 2017 00:00:00 +0000</pubDate>
       
-      <guid>/about/</guid>
-      <description>
-
-&lt;h2 id=&#34;kevin-rosamont&#34;&gt;Kevin Rosamont&lt;/h2&gt;
-
-&lt;p&gt;&lt;img src=&#34;./img/kevin.jpg&#34; alt=&#34;Kevin Rosamont&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Data scientist interested in Data analysis and Visualisation&lt;/p&gt;
-
-&lt;p&gt;I’m initially a Statistician with a solid grounding in statistical theory and techniques.
-I’ve also gained lots of experience in data mining through my working experience.
-What I&amp;rsquo;m doing in my daily life?
-Working in the public domain.&lt;/p&gt;
-
-&lt;p&gt;Besides that, I&amp;rsquo;m a big soccer fan! Allez les bleus!&lt;/p&gt;
-</description>
+      <guid>/post/2017-09-16-communication-between-r-and-d3js/</guid>
+      <description>Hello everyone,
+In this post we will focus on how to send a message from R to javascript. More precisely, we will focus on the basic keywords and knowledge to integrate a d3.js graph into shiny, just like here. If you have any issue to make shiny and javascript communicate after reading this post, I suggest you to go back to this simple shiny app from Rstudio.
+First of all, create a folder where you will put your data file (.</description>
     </item>
     
     <item>
-      <title>Get in touch</title>
-      <link>/contact/</link>
-      <pubDate>Sun, 06 Nov 2016 13:00:25 +0530</pubDate>
+      <title>Why you definitely should use tidyeval</title>
+      <link>/post/2017-08-27-why-you-defenitely-should-use-tidyeval/</link>
+      <pubDate>Sun, 27 Aug 2017 00:00:00 +0000</pubDate>
       
-      <guid>/contact/</guid>
-      <description>&lt;p&gt;When she reached the first hills of the Italic Mountains, she had a last view back on the skyline of her hometown Bookmarksgrove, the headline of Alphabet Village and the subline of her own road, the Line Lane. Pityful a rethoric question ran over her cheek, then&lt;/p&gt;
-
-&lt;p&gt;Effects present letters inquiry no an removed or friends. Desire behind latter me though in. Supposing shameless am he engrossed up additions. My possible peculiar together to. Desire so better am cannot he up before points. Remember mistaken opinions it pleasure of debating. Court front maids forty if aware their at. Chicken use are pressed removed.&lt;/p&gt;
-
-&lt;p&gt;Able an hope of body. Any nay shyness article matters own removal nothing his forming. Gay own additions education satisfied the perpetual. If he cause manor happy. Without farther she exposed saw man led. Along on happy could cease green oh.&lt;/p&gt;
-</description>
+      <guid>/post/2017-08-27-why-you-defenitely-should-use-tidyeval/</guid>
+      <description>First thing’s first: maybe you shouldn’t care about tidyeval. Maybe you don’t need it. If you exclusively work interactively, I don’t think that learning about tidyeval is important. I can only speak for me, and explain to you why I personally find tidyeval useful.
+I wanted to write this blog post after reading this twitter thread and specifically this question.
+Mara Averick then wrote this blogpost linking to 6 other blog posts that give some tidyeval examples.</description>
+    </item>
+    
+    <item>
+      <title>Scraping data from STATEC&#39;s public tables</title>
+      <link>/post/2017-08-21-scraping-data-from-statec-s-public-tables/</link>
+      <pubDate>Fri, 21 Apr 2017 06:34:55 +0200</pubDate>
+      
+      <guid>/post/2017-08-21-scraping-data-from-statec-s-public-tables/</guid>
+      <description>A lot of open data is available in Luxembourg’s open data portal, but sometimes, it is not very easy to download. In the video below, I give you an example of such data and show how you can use rvest to get the data easily.
+After watching the video, take a look at the code below. This code does two things; first it scrapes the data, and then it puts the data in a tidy format fur further processing.</description>
+    </item>
+    
+    <item>
+      <title>Disclaimer</title>
+      <link>/page/disclaimer/</link>
+      <pubDate>Thu, 01 Oct 2015 00:00:00 +0000</pubDate>
+      
+      <guid>/page/disclaimer/</guid>
+      <description>Disclaimer  Your disclaimer text here NOTE:Some information in this website might be copied from other websites. If you see something is your copyright or something should not belong here, please feel free to contact me. I will remove necessary parts.     </description>
+    </item>
+    
+    <item>
+      <title>License</title>
+      <link>/page/license/</link>
+      <pubDate>Thu, 01 Oct 2015 00:00:00 +0000</pubDate>
+      
+      <guid>/page/license/</guid>
+      <description>LICENSE  Unless otherwise mentioned code from this blog can used as per MIT or Apache 2.0 license.     </description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>/page/contact/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/page/contact/</guid>
+      <description>rdata.lu   rData.lu  &amp;#9776;   HOME    VISUALIZATION    CATEGORIES    CONTACT    ABOUT US   --       CONTACT      Rdata.lu is a Luxembourg based company specializing in data science training and expertise.
+We mainly use R environment to build applications. We collaborate with small and large businesses in different kind of industries.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>/page/visualization/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/page/visualization/</guid>
+      <description>rdata.lu   rData.lu  &amp;#9776;   HOME    VISUALIZATION    CATEGORIES    CONTACT    ABOUT US   --       SHINY APPLICATIONS        TYPE OF VEHICLES FUEL Interactive dashboard to compare the number of vehicles by type of fuel in Luxembourg, 1997-2017.        STEEL TRANSPORTATION Animated graph showing the quantity of Luxembourg steel moved by road transportation to a destination country, 1952-2000.</description>
     </item>
     
   </channel>

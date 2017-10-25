@@ -1,30 +1,48 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>/portfolio/2017-04-10-launch-a-shiny-app-from-a-shortcut/</loc>
-    <lastmod>2017-04-10T21:13:14-05:00</lastmod>
+    <loc>/post/2017-10-21-scraping-data-from-the-local-elections/</loc>
+    <lastmod>2017-10-21T06:34:55+02:00</lastmod>
   </url>
   
   <url>
-    <loc>/portfolio/d3jsandR_communication/</loc>
-    <lastmod>2015-07-23T21:13:14-05:00</lastmod>
+    <loc>/post/2017-10-09-make-ggplot2-purrr-again/</loc>
+    <lastmod>2017-10-09T06:45:48+02:00</lastmod>
   </url>
   
   <url>
-    <loc>/about/</loc>
-    <lastmod>2017-03-20T21:05:33+05:30</lastmod>
+    <loc>/post/2017-09-16-communication-between-r-and-d3js/</loc>
+    <lastmod>2017-09-16T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/contact/</loc>
-    <lastmod>2016-11-06T13:00:25+05:30</lastmod>
+    <loc>/post/2017-08-27-why-you-defenitely-should-use-tidyeval/</loc>
+    <lastmod>2017-08-27T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/tags/batch/</loc>
-    <lastmod>2017-04-10T21:13:14-05:00</lastmod>
-    <priority>0</priority>
+    <loc>/post/2017-08-21-scraping-data-from-statec-s-public-tables/</loc>
+    <lastmod>2017-04-21T06:34:55+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/page/disclaimer/</loc>
+    <lastmod>2015-10-01T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/page/license/</loc>
+    <lastmod>2015-10-01T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/page/contact/</loc>
+  </url>
+  
+  <url>
+    <loc>/page/visualization/</loc>
   </url>
   
   <url>
@@ -34,42 +52,73 @@
   
   <url>
     <loc>/tags/d3js/</loc>
-    <lastmod>2015-07-23T21:13:14-05:00</lastmod>
+    <lastmod>2017-09-16T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/tags/icon/</loc>
-    <lastmod>2017-04-10T21:13:14-05:00</lastmod>
+    <loc>/tags/ggplot2/</loc>
+    <lastmod>2017-10-09T06:45:48+02:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/portfolio/</loc>
-    <lastmod>2017-04-10T21:13:14-05:00</lastmod>
+    <loc>/page/</loc>
+    <lastmod>2015-10-01T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/</loc>
-    <lastmod>2017-04-10T21:13:14-05:00</lastmod>
+    <loc>/post/</loc>
+    <lastmod>2017-10-21T06:34:55+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/purr/</loc>
+    <lastmod>2017-10-09T06:45:48+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/categories/r/</loc>
+    <lastmod>2017-10-21T06:34:55+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/scrapping/</loc>
+    <lastmod>2017-10-21T06:34:55+02:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>/tags/shiny/</loc>
-    <lastmod>2015-07-23T21:13:14-05:00</lastmod>
+    <lastmod>2017-09-16T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>/categories/shiny-app/</loc>
-    <lastmod>2017-04-10T21:13:14-05:00</lastmod>
+    <lastmod>2017-09-16T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>/tags/</loc>
+    <lastmod>2017-09-16T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/tidyeval/</loc>
+    <lastmod>2017-08-27T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/</loc>
+    <lastmod>2017-10-21T06:34:55+02:00</lastmod>
     <priority>0</priority>
   </url>
   

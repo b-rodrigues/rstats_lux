@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tags on rData.lu - Specialized in data science training and expertise</title>
+    <link>/tags/</link>
+    <description>Recent content in Tags on rData.lu - Specialized in data science training and expertise</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>Copyright (c) rData.lu. All rights reserved. &lt;br&gt; Content reblogged by &lt;a href=&#39;https://www.r-bloggers.com/&#39; target=&#39;_blank&#39;&gt;R-bloggers&lt;/a&gt;</copyright>
+    <lastBuildDate>Sat, 16 Sep 2017 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>D3js</title>
+      <link>/tags/d3js/</link>
+      <pubDate>Sat, 16 Sep 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/d3js/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Ggplot2</title>
+      <link>/tags/ggplot2/</link>
+      <pubDate>Mon, 09 Oct 2017 06:45:48 +0200</pubDate>
+      
+      <guid>/tags/ggplot2/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Purr</title>
+      <link>/tags/purr/</link>
+      <pubDate>Mon, 09 Oct 2017 06:45:48 +0200</pubDate>
+      
+      <guid>/tags/purr/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Scrapping</title>
+      <link>/tags/scrapping/</link>
+      <pubDate>Sat, 21 Oct 2017 06:34:55 +0200</pubDate>
+      
+      <guid>/tags/scrapping/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Shiny</title>
+      <link>/tags/shiny/</link>
+      <pubDate>Sat, 16 Sep 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/shiny/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Tidyeval</title>
+      <link>/tags/tidyeval/</link>
+      <pubDate>Sun, 27 Aug 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/tidyeval/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

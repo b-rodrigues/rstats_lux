@@ -1,71 +1,55 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>R on Rstats Luxembourg</title>
-    <link>/categories/r/index.xml</link>
-    <description>Recent content in R on Rstats Luxembourg</description>
+    <title>R on rData.lu - Specialized in data science training and expertise</title>
+    <link>/categories/r/</link>
+    <description>Recent content in R on rData.lu - Specialized in data science training and expertise</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <atom:link href="/categories/r/index.xml" rel="self" type="application/rss+xml" />
+    <copyright>Copyright (c) rData.lu. All rights reserved. &lt;br&gt; Content reblogged by &lt;a href=&#39;https://www.r-bloggers.com/&#39; target=&#39;_blank&#39;&gt;R-bloggers&lt;/a&gt;</copyright>
+    <lastBuildDate>Sat, 21 Oct 2017 06:34:55 +0200</lastBuildDate>
+    
+	<atom:link href="/categories/r/index.xml" rel="self" type="application/rss+xml" />
+    
     
     <item>
-      <title>Hello R Markdown</title>
-      <link>/portfolio/2015-07-23-r-rmarkdown/</link>
-      <pubDate>Thu, 23 Jul 2015 21:13:14 -0500</pubDate>
+      <title>Scraping data from the local elections</title>
+      <link>/post/2017-10-21-scraping-data-from-the-local-elections/</link>
+      <pubDate>Sat, 21 Oct 2017 06:34:55 +0200</pubDate>
       
-      <guid>/portfolio/2015-07-23-r-rmarkdown/</guid>
-      <description>&lt;!-- BLOGDOWN-BODY-BEFORE
-
-/BLOGDOWN-BODY-BEFORE --&gt;
-
-&lt;div id=&#34;r-markdown&#34; class=&#34;section level1&#34;&gt;
-&lt;h1&gt;R Markdown&lt;/h1&gt;
-&lt;p&gt;This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see &lt;a href=&#34;http://rmarkdown.rstudio.com&#34; class=&#34;uri&#34;&gt;http://rmarkdown.rstudio.com&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;You can embed an R code chunk like this:&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;summary(cars)
-##      speed           dist       
-##  Min.   : 4.0   Min.   :  2.00  
-##  1st Qu.:12.0   1st Qu.: 26.00  
-##  Median :15.0   Median : 36.00  
-##  Mean   :15.4   Mean   : 42.98  
-##  3rd Qu.:19.0   3rd Qu.: 56.00  
-##  Max.   :25.0   Max.   :120.00
-fit &amp;lt;- lm(dist ~ speed, data = cars)
-fit
-## 
-## Call:
-## lm(formula = dist ~ speed, data = cars)
-## 
-## Coefficients:
-## (Intercept)        speed  
-##     -17.579        3.932&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;div id=&#34;including-plots&#34; class=&#34;section level1&#34;&gt;
-&lt;h1&gt;Including Plots&lt;/h1&gt;
-&lt;p&gt;You can also embed plots. See Figure &lt;a href=&#34;#fig:pie&#34;&gt;1&lt;/a&gt; for example:&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;par(mar = c(0, 1, 0, 1))
-pie(
-  c(280, 60, 20),
-  c(&amp;#39;Sky&amp;#39;, &amp;#39;Sunny side of pyramid&amp;#39;, &amp;#39;Shady side of pyramid&amp;#39;),
-  col = c(&amp;#39;#0292D8&amp;#39;, &amp;#39;#F7EA39&amp;#39;, &amp;#39;#C4B632&amp;#39;),
-  init.angle = -50, border = NA
-)&lt;/code&gt;&lt;/pre&gt;
-&lt;div class=&#34;figure&#34;&gt;&lt;span id=&#34;fig:pie&#34;&gt;&lt;/span&gt;
-&lt;img src=&#34;#####../content/portfolio/2015-07-23-r-rmarkdown_files/figure-html/pie-1.png&#34; alt=&#34;A fancy pie chart.&#34; width=&#34;672&#34; /&gt;
-&lt;p class=&#34;caption&#34;&gt;
-Figure 1: A fancy pie chart.
-&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-
-&lt;!-- BLOGDOWN-HEAD
-
-
-
-
-/BLOGDOWN-HEAD --&gt;
-</description>
+      <guid>/post/2017-10-21-scraping-data-from-the-local-elections/</guid>
+      <description>One of my journalist friend was looking at the result of the local election in Luxembourg and he was dissatisfied because he was unable to compare the results of all the communes. In fact, he wanted to compare the number of women that were candidates in each commune. So I asked him to hold on and I came back one hour later with this script that enables him to collect results of all communes in one table.</description>
+    </item>
+    
+    <item>
+      <title>Let&#39;s make ggplot2 purrr again</title>
+      <link>/post/2017-10-09-make-ggplot2-purrr-again/</link>
+      <pubDate>Mon, 09 Oct 2017 06:45:48 +0200</pubDate>
+      
+      <guid>/post/2017-10-09-make-ggplot2-purrr-again/</guid>
+      <description>Update: I’ve included another way of saving a separate plot by group in this article, as pointed out by @monitus. Actually, this is the preferred solution; using dplyr::do() is deprecated, according to Hadley Wickham himself.
+I’ll be honest: the title is a bit misleading. I will not use purrr that much in this blog post. Actually, I will use one single purrr function, at the very end. I use dplyr much more.</description>
+    </item>
+    
+    <item>
+      <title>Why you definitely should use tidyeval</title>
+      <link>/post/2017-08-27-why-you-defenitely-should-use-tidyeval/</link>
+      <pubDate>Sun, 27 Aug 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/post/2017-08-27-why-you-defenitely-should-use-tidyeval/</guid>
+      <description>First thing’s first: maybe you shouldn’t care about tidyeval. Maybe you don’t need it. If you exclusively work interactively, I don’t think that learning about tidyeval is important. I can only speak for me, and explain to you why I personally find tidyeval useful.
+I wanted to write this blog post after reading this twitter thread and specifically this question.
+Mara Averick then wrote this blogpost linking to 6 other blog posts that give some tidyeval examples.</description>
+    </item>
+    
+    <item>
+      <title>Scraping data from STATEC&#39;s public tables</title>
+      <link>/post/2017-08-21-scraping-data-from-statec-s-public-tables/</link>
+      <pubDate>Fri, 21 Apr 2017 06:34:55 +0200</pubDate>
+      
+      <guid>/post/2017-08-21-scraping-data-from-statec-s-public-tables/</guid>
+      <description>A lot of open data is available in Luxembourg’s open data portal, but sometimes, it is not very easy to download. In the video below, I give you an example of such data and show how you can use rvest to get the data easily.
+After watching the video, take a look at the code below. This code does two things; first it scrapes the data, and then it puts the data in a tidy format fur further processing.</description>
     </item>
     
   </channel>
