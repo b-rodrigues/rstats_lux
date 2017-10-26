@@ -11,9 +11,9 @@ weight : 1
 
 One of my journalist friend was looking at the result of the local election in Luxembourg and he was dissatisfied because he was unable to compare the results of all the communes. In fact, he wanted to compare the number of women that were candidates in each commune. So I asked him to hold on and I came back one hour later with this script that enables him to collect results of all communes in one table.
 
-At the beginning, it was a private code but I thought that it could be another great scraping example after the excellent post written by my colleague Bruno Rodrigues about scraping data from STATEC public tables.
+At the beginning, it was private code but I thought that it could be another great scraping example after the excellent post written by my colleague Bruno Rodrigues about scraping data from STATEC public tables.
 
-So let’s get started with the loading packages.
+So let’s get started. First, let's load some packages:
 
 
 ```{r, cache=TRUE}
@@ -33,7 +33,7 @@ We want to collect results of all communes in one data frame.
 We go to http://www.elections.public.lu and we collect data that is seen in the GIF bellow:
 
 
-After clicking on different communes, we notice that the URL have the same format. They have 3 parts :<br>
+After clicking on different communes, we notice that the URLs have the same format. They have 3 parts :<br>
 1: “http://www.elections.public.lu/fr/elections-communales/2017/resultats/communes/”, the first part of the URL.<br>
 2: “communes_names” the name of the city is the second part of the URL.<br>
 3: “.html” is the last part.<br>
@@ -41,7 +41,7 @@ After clicking on different communes, we notice that the URL have the same forma
 For example, the complete URL for the commune of Luxembourg will be:
 http://www.elections.public.lu/fr/elections-communales/2017/resultats/communes/luxembourg.html<br><br>
 
-There are 103 communes, so we have to put all of them in a list of vector. We scrape the 103 communes in one vector via the script bellow :
+There are 103 communes, so we have to put all of them in a list. We scrape the 103 communes in one list via the script bellow :
 
 ```{r, cache=TRUE}
 url = "http://www.elections.public.lu/fr/elections-communales/2017/resultats/communes/bech.html"
@@ -84,45 +84,45 @@ collect data that we want to display in our data frame.
 
 ```{r, cache=TRUE}
 #Function to have the result for one commune.
-result= function(x){
-#scrapping data
-vote = read_html(paste("http://www.elections.public.lu/fr/elections-communales/2017/resultats/communes/",x,".html", sep="")) %>% 
-        html_nodes("#lux-number .lux-number ul li") %>%
-        html_text()%>%.[-1]
-
-#Conditions need to be added to have clean data.
-#Here we add a trick, the vector 14 and 15 are the only ones that haven't the string "\r\n".
-#So we add "\r\n" to these vectors.
-if(nchar(vote[14])>21){
-        vote[14] =gsub ("ble","ble\r\n", vote[14],perl = FALSE)
-}
-if(nchar(vote[15])>21){
-        vote[15] =gsub ("mé","mé\r\n", vote[15],perl = FALSE)
-}
-#We split vectors to dissociate the results (numbers) and the titles (letters).
-vote = unlist(str_split(vote, "\r\n"))
-vote = trimws(vote)
-vote = vote[vote!=""]
-
-#Here we have similar title so we change them to not be confused.
-#Candidat Lux means Luxemburgish Candidates  & Electeur Lux means Luxemburgish voters. 
-vote[7] = gsub("Lux", "Candidat Lux", vote[7] )
-vote[9] = gsub("Non Lu", "Candidat Non Lu", vote[9] )
-vote[13] = gsub("Lux", "Electeur Lux", vote[13] )
-vote[15] = gsub("Non Lu", "Electeur Non Lu", vote[15]  )
-
-#We create the data frame.
-#Vector with pair indice value are the results (the column val).
-pair = (1:15)*2
-
-#Vector with impair indice value are the titles (the column title).
-impair = (1:15)*2-1
-res = data.frame(communes = rep(x,15), title = vote[impair], val = vote[pair])
-return(res)
+  result = function(x){
+  #scrapping data
+  vote = read_html(paste("http://www.elections.public.lu/fr/elections-com  munales/2017/resultats/communes/",x,".html", sep="")) %>% 
+          html_nodes("#lux-number .lux-number ul li") %>%
+          html_text()%>%.[-1]
+  
+  #Conditions need to be added to have clean data.
+  #Here we add a trick, the vector 14 and 15 are the only ones that   haven't the string "\r\n".
+  #So we add "\r\n" to these vectors.
+  if(nchar(vote[14]) > 21){
+          vote[14] = gsub("ble","ble\r\n", vote[14],perl = FALSE)
+  }
+  if(nchar(vote[15]) > 21){
+          vote[15] = gsub("mé","mé\r\n", vote[15],perl = FALSE)
+  }
+  #We split vectors to dissociate the results (numbers) and the titles   (letters).
+  vote = unlist(str_split(vote, "\r\n"))
+  vote = trimws(vote)
+  vote = vote[vote != ""]
+  
+  #Here we have similar title so we change them to not be confused.
+  #Candidat Lux means Luxemburgish Candidates  & Electeur Lux means   Luxemburgish voters. 
+  vote[7] = gsub("Lux", "Candidat Lux", vote[7] )
+  vote[9] = gsub("Non Lu", "Candidat Non Lu", vote[9] )
+  vote[13] = gsub("Lux", "Electeur Lux", vote[13] )
+  vote[15] = gsub("Non Lu", "Electeur Non Lu", vote[15]  )
+  
+  #We create the data frame.
+  #Vector with pair indice value are the results (the column val).
+  pair = (1:15)*2
+  
+  #Vectors with odd index value are the titles (the column title).
+  impair = (1:15)*2 - 1
+  res = data.frame(communes = rep(x,15), title = vote[impair], val =   vote[pair])
+  return(res)
 }
 ```
 
-Then we use the lapply() function to apply this function to the 103 communes and bind them in one data frame.
+Then we use the lapply() function to apply this function to the 103 communes and bind them in one data frame:
 
 
 ```{r, cache=TRUE}
@@ -140,16 +140,16 @@ To see the 5 first rows of our new data frame:
 head(df,5)
 ```
 
-As you can see, it’s looking good but we are not completely satisfied because we would like to transpose data to have one result in one column. To this end, we use the library(tidyr).
+As you can see, it’s looking good but we are not completely satisfied because we would like to transpose data to have one result in one column. To this end, we use the `tidyr` package.
 
 ```{r, cache=TRUE}
 library(tidyr)
 
 #Transposing data will enables us to make analysis faster.
-#We transform val in a numeric variable than we transpose data.
+#We transform val in a numeric variable then we transpose data.
 
 tdf = df %>%
-        mutate(val=as.numeric(gsub(" ", "", val))) %>%
+        mutate(val = as.numeric(gsub(" ", "", val))) %>%
         spread(title, val)
 ```
 
@@ -171,8 +171,8 @@ readr::write_excel_csv(tdf,"election_lux.csv")
 ```
 
 
-I hope you enjoyed reading this post. Don't hesitate to contact us for any questions.
-Follow us on [twitter](https://twitter.com/rdata_lu?lang=en) and subscribe to our [youtube channel.](https://www.youtube.com/channel/UCbazvBnJd7CJ4WnTL6BI6qw) See you for the next post ;) <br>
+I hope you enjoyed reading this post. Don't hesitate to contact me for any questions.
+Follow rdata.lu on [twitter](https://twitter.com/rdata_lu?lang=en) and subscribe to the [youtube channel.](https://www.youtube.com/channel/UCbazvBnJd7CJ4WnTL6BI6qw) See you for the next post ;) <br>
 
 Kevin
 

@@ -6,7 +6,7 @@ categories: ["R"]
 tags: ["ggplot2", "purr"]
 banner : "images/click.svg"
 weight : 1
-description : "Basically the idea of this blog post is to show how to create graphs using `ggplot2`, but by grouping by a factor variable beforehand. "
+description : "The idea of this blog post is to show how to create graphs using `ggplot2`, but by grouping by a factor variable beforehand. "
 ---
 
 ```{r setup, include=FALSE}
@@ -181,6 +181,3 @@ and the plots will not match. Try running all the code without re-ordering, you'
 
 I hope you found this post useful. You can follow me on [twitter](https://www.twitter.com/brodriguesco) for
 blog updates.
-
-*Update*: Many thanks to the readers of this article and for their useful suggestions. I love the R
-community; everyday I learn something new and useful!
